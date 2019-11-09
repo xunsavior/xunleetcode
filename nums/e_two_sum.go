@@ -21,16 +21,20 @@ func twoSumWithBruteForce(nums []int, target int) []int {
 }
 
 func twoSumWithTwoPassMap(nums []int, target int) []int {
+	//create a map to store all elements, map key is element value and map value is element index
 	m := make(map[int]int)
 	for i, v := range nums {
 		m[v] = i
 	}
+
 	for i := range nums {
+		// find the complement and use it as map key to find the element index
 		complement := target - nums[i]
 		i2, ok := m[complement]
 		if ok && i2 != i {
 			return []int{i, i2}
 		}
 	}
+
 	return nil
 }

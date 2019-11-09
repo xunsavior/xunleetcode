@@ -54,8 +54,10 @@ var romanMap = map[string]int{
 func romanToInt(s string) int {
 	sum := 0
 	for i, v := range s {
-		c := string(v)
-		val := romanMap[c]
+		c := string(v)     // get roman char
+		val := romanMap[c] // get value of the above roman char
+
+		// check if we need to change the sign of the value of roman
 		switch c {
 		case "I":
 			if i+1 < len(s) && (string(s[i+1]) == "V" || string(s[i+1]) == "X") {
@@ -70,8 +72,11 @@ func romanToInt(s string) int {
 				val = -val
 			}
 		}
+
+		// sum up
 		sum += val
 	}
+
 	return sum
 }
 

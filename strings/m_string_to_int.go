@@ -37,6 +37,7 @@ func myAtoi(str string) int {
 	// remove space
 	trimedStr := strings.TrimSpace(str)
 	numString := ""
+
 	// used to check if positive or negative
 	sign := 1
 	for i, v := range trimedStr {
@@ -45,8 +46,7 @@ func myAtoi(str string) int {
 			if string(v) == "+" {
 				continue
 			} else if string(v) == "-" {
-				// update sign to -1
-				sign = -1
+				sign = -1 // update sign to -1
 				continue
 			}
 		}
@@ -77,6 +77,7 @@ func myAtoi(str string) int {
 	if sign == 1 {
 		return max
 	}
+
 	return min
 }
 

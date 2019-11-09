@@ -1,14 +1,11 @@
 package main
 
 import (
-	"fmt"
-	nums "leetcode/nums"
-	"math"
+	//nums "leetcode/nums"
+	strs "leetcode/strings"
 )
 
 func main() {
-	//2147483647
-	//1534236469
-	fmt.Println(math.MaxInt32)
-	nums.TestReverseNumber()
+	//nums.TestReverseNumber()
+	strs.TestLongestCommonPrefix()
 }

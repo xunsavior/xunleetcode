@@ -24,7 +24,8 @@ func longestCommonPrefix(strs []string) string {
 	if len(strs) == 0 {
 		return ""
 	}
-	// find a shortest string
+
+	// find a shortest string, and use the shortest string to compare
 	var shortestStr string = strs[0]
 	for _, str := range strs {
 		if len(str) < len(shortestStr) {
@@ -32,17 +33,16 @@ func longestCommonPrefix(strs []string) string {
 		}
 	}
 
-	lenghth := 0
-quiries:
+	// find 1st index of char different from shortestStr's prefix
 	for i, c := range shortestStr {
 		for _, str := range strs {
 			if string(str[i]) != string(c) {
-				break quiries
+				return shortestStr[:i] // return the substr
 			}
 		}
-		lenghth++
 	}
-	return shortestStr[:lenghth]
+
+	return shortestStr
 }
 
 //TestLongestCommonPrefix ...

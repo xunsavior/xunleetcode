@@ -1,6 +1,10 @@
 package strs
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+	"unicode/utf8"
+)
 
 /*
 	Given a string, find the length of the longest substring without repeating characters.
@@ -27,28 +31,27 @@ import "fmt"
 */
 
 func lengthOfLongestSubstring(s string) int {
-	substr := make([]string, 0, len(s))
+	//create empty string to store substr
+	substr := ""
 	maxLen := 0
+
 	for _, v := range s {
-		repeatedIndex := repeatedIndex(substr, string(v))
-		substr = append(substr, string(v))
+		strValue := string(v)
+		repeatedIndex := strings.Index(substr, strValue) //get the first repeated index in substr
+		substr += strValue                               // append the value to substr
+
+		// if the repeated index is found, we discard all the elements equal or less the index.
 		if repeatedIndex != -1 {
 			substr = substr[repeatedIndex+1:]
 		}
-		if size := len(substr); size >= maxLen {
+
+		// update the max size
+		if size := utf8.RuneCountInString(substr); size >= maxLen {
 			maxLen = size
 		}
 	}
-	return maxLen
-}
 
-func repeatedIndex(elements []string, e string) int {
-	for i := range elements {
-		if elements[i] == e {
-			return i
-		}
-	}
-	return -1
+	return maxLen
 }
 
 // RunLongestNonRepatedSubstr ...
