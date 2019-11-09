@@ -30,8 +30,8 @@ If the numerical value is out of the range of representable values, INT_MAX (231
 
 */
 
-var max = int(math.Pow(2, 31) - 1)
-var min = int(-math.Pow(2, 31))
+var max = math.MaxInt32
+var min = math.MinInt32
 
 func myAtoi(str string) int {
 	// remove space

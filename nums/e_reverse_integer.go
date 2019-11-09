@@ -1,9 +1,9 @@
 package nums
 
 import (
+	"log"
 	"math"
 	"strconv"
-	"strings"
 )
 
 /*
@@ -20,31 +20,40 @@ import (
 	the 32-bit signed integer range: [−2^31,  2^31 − 1].
 	For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.
 */
+
+// TestReverseNumber ...
+func TestReverseNumber() {
+	log.Println(reverse(123))
+	log.Println(reverse(-123))
+	log.Println(reverse(120))
+	log.Println(reverse(1534236469))
+	log.Println(reverse(9646324351))
+}
+
 func reverse(x int) int {
-	if x > int(math.Pow(2, 31)-1) || x < -int(math.Pow(2, 31)) {
+	//case: the num is out of range
+	if x > math.MaxInt32 || x < math.MinInt32 {
 		return 0
 	}
+
+	// convert num to string
 	s := strconv.Itoa(x)
-	var actuallyLen int
-	if actuallyLen = len(s) - 1; x >= 0 {
-		actuallyLen = len(s)
+	initStr := ""
+	runes := []rune(s)
+	// check if 1st value is "-"
+	var startIndex int
+	if string(runes[startIndex]) == "-" {
+		startIndex = 1
+		initStr += "-"
 	}
-	sr := make([]string, actuallyLen, actuallyLen)
-	var endpoint int
-	if endpoint = 1; x > 0 {
-		endpoint = 0
+	//reverse and copy to a new string
+	for i := len(runes) - 1; i >= startIndex; i-- {
+		initStr += string(runes[i])
 	}
-	for i := len(s) - 1; i >= endpoint; i-- {
-		sr = append(sr, string(s[i]))
+
+	if num, err := strconv.Atoi(initStr); err == nil {
+		return num
 	}
-	sOutput := strings.Join(sr, "")
-	out, err := strconv.Atoi(sOutput)
-	if err == nil {
-		if x > 0 && out <= int(math.Pow(2, 31)-1) {
-			return out
-		} else if x < 0 && -out >= -int(math.Pow(2, 31)) {
-			return -out
-		}
-	}
+
 	return 0
 }

@@ -1,13 +1,14 @@
 package main
 
 import (
+	"fmt"
 	nums "leetcode/nums"
-	"log"
+	"math"
 )
 
 func main() {
-	n1 := []int{1, 2, 3}
-	n2 := n1[0:3]
-	log.Println(n2)
-	nums.TestMaxArea()
+	//2147483647
+	//1534236469
+	fmt.Println(math.MaxInt32)
+	nums.TestReverseNumber()
 }
