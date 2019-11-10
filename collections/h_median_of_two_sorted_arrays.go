@@ -1,8 +1,4 @@
-package nums
-
-import (
-	"fmt"
-)
+package collections
 
 /*
 	There are two sorted arrays nums1 and nums2 of size m and n respectively.
@@ -51,10 +47,4 @@ func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 		return median
 	}
 	return float64(combSlice[len(combSlice)-1])
-}
-
-//RunFindMedianSortedArrays ...
-func RunFindMedianSortedArrays() {
-	fmt.Println(findMedianSortedArrays([]int{1, 3}, []int{2}))
-	fmt.Println(findMedianSortedArrays([]int{1, 2}, []int{3, 4}))
 }
