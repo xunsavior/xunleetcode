@@ -23,10 +23,8 @@ func addValToSlice(currentNode *TNode, output []int) []int {
 	if currentNode == nil {
 		return []int{}
 	}
-
 	lNode := currentNode.Left
 	rNode := currentNode.Right
-
 	/*
 		if the LEFT node of CURRENT node is NOT nil, we simply move to that
 		LEFT node
@@ -34,20 +32,17 @@ func addValToSlice(currentNode *TNode, output []int) []int {
 	if lNode != nil {
 		output = addValToSlice(lNode, output)
 	}
-
 	/*
 		if the LEFT node of current node is nil, we simply add the value of
 		current node to the slice
 	*/
 	output = append(output, currentNode.Val)
-
 	/*
-		if the RIGHT node of current node is NOT nil, we simply move to that
-		RIGHT node
+		if the RIGHT node of current node is NOT nil, we simply move to
+		that RIGHT node
 	*/
 	if rNode != nil {
 		output = addValToSlice(rNode, output)
 	}
-
 	return output
 }

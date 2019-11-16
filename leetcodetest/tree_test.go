@@ -27,10 +27,36 @@ var inOrderTraversalTestCases = []*inOrderTraversal{
 		},
 		expectRes: []int{1, 3, 2},
 	},
+	&inOrderTraversal{
+		input:     nil,
+		expectRes: []int{},
+	},
 }
 
 func TestInOrderTraversal(t *testing.T) {
 	for _, v := range inOrderTraversalTestCases {
 		equals(t, v.expectRes, tree.InOrderTraversal(v.input))
+	}
+}
+
+type numTreesTestCase struct {
+	input  int
+	expRes int
+}
+
+var numTreesTestCases = []*numTreesTestCase{
+	&numTreesTestCase{
+		input:  3,
+		expRes: 5,
+	},
+	&numTreesTestCase{
+		input:  4,
+		expRes: 14,
+	},
+}
+
+func TestNumTrees(t *testing.T) {
+	for _, v := range numTreesTestCases {
+		equals(t, v.expRes, tree.NumTreesWithDPSolution(v.input))
 	}
 }
