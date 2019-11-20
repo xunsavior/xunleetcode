@@ -2,6 +2,7 @@ package leetcodetest
 
 import (
 	"leetcode/tree"
+	"log"
 	"testing"
 )
 
@@ -157,5 +158,100 @@ var validBSTCases = []*validBSTInput{
 func TestIsValidBST(t *testing.T) {
 	for _, v := range validBSTCases {
 		equals(t, v.exRes, tree.IsValidBST(v.input))
+	}
+}
+
+type isSameTreeInput struct {
+	node1  *tree.TNode
+	node2  *tree.TNode
+	expRes bool
+}
+
+var isSameTreeInputCases = []*isSameTreeInput{
+	&isSameTreeInput{
+		node1: &tree.TNode{
+			Val: 1,
+			Left: &tree.TNode{
+				Val:   2,
+				Left:  nil,
+				Right: nil,
+			},
+			Right: &tree.TNode{
+				Val:   3,
+				Left:  nil,
+				Right: nil,
+			},
+		},
+		node2: &tree.TNode{
+			Val: 1,
+			Left: &tree.TNode{
+				Val:   2,
+				Left:  nil,
+				Right: nil,
+			},
+			Right: &tree.TNode{
+				Val:   3,
+				Left:  nil,
+				Right: nil,
+			},
+		},
+		expRes: true,
+	},
+	&isSameTreeInput{
+		node1: &tree.TNode{
+			Val: 1,
+			Left: &tree.TNode{
+				Val:   2,
+				Left:  nil,
+				Right: nil,
+			},
+			Right: nil,
+		},
+		node2: &tree.TNode{
+			Val:  1,
+			Left: nil,
+			Right: &tree.TNode{
+				Val:   2,
+				Left:  nil,
+				Right: nil,
+			},
+		},
+		expRes: false,
+	},
+	&isSameTreeInput{
+		node1: &tree.TNode{
+			Val: 1,
+			Left: &tree.TNode{
+				Val:   2,
+				Left:  nil,
+				Right: nil,
+			},
+			Right: &tree.TNode{
+				Val:   1,
+				Left:  nil,
+				Right: nil,
+			},
+		},
+		node2: &tree.TNode{
+			Val: 1,
+			Left: &tree.TNode{
+				Val:   1,
+				Left:  nil,
+				Right: nil,
+			},
+			Right: &tree.TNode{
+				Val:   2,
+				Left:  nil,
+				Right: nil,
+			},
+		},
+		expRes: false,
+	},
+}
+
+func TestIsSameTree(t *testing.T) {
+	for _, v := range isSameTreeInputCases {
+		log.Printf("%v %v", *v.node1, *v.node2)
+		equals(t, v.expRes, tree.IsSameTree(v.node1, v.node2))
 	}
 }
