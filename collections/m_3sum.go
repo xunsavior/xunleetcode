@@ -29,7 +29,7 @@ func ThreeSum(nums []int) [][]int {
 	)
 
 	// divide original numbers into positive (include 0) and negative slices
-	// store both slices into hash map
+	// store the elements of two slices into two maps ([mapkey])
 	for _, v := range nums {
 		if v < 0 {
 			negMap[v] = negMap[v] + 1

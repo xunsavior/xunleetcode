@@ -36,7 +36,7 @@ func Convert(s string, numRows int) string {
 	dir, rowNo := MoveDown, 0
 	runes := []rune(s)
 
-	// use hash map with key: row index and value: string of each row
+	// use hash map with key -> row index and value -> string of each row
 	dic := map[int]string{}
 	for _, v := range runes {
 		if dir == MoveDown {
