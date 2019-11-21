@@ -1,10 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"log"
-	"time"
-)
+import "log"
 
 //nums "leetcode/nums"
 
@@ -21,18 +17,13 @@ func main() {
 */
 
 func sampleDPDemo() {
-	n := 30
-	cache := make([]int, n+1)
-	start := time.Now()
-	resf := f(n, cache)
-	duration := time.Since(start)
-	fmt.Printf("Result is %d and f() took %d\n", resf, duration.Nanoseconds())
+	m := map[string]int{}
+	//addMap(m)
+	log.Println(m)
+}
 
-	start = time.Now()
-	resf = fSlow(n)
-	duration = time.Since(start)
-	log.Printf("Result is %d and fSlow() took %d", resf, duration.Nanoseconds())
-
+func addMap(m map[string]int) {
+	m["1"] = 1
 }
 
 // Fibonacci

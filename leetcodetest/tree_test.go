@@ -255,3 +255,146 @@ func TestIsSameTree(t *testing.T) {
 		equals(t, v.expRes, tree.IsSameTree(v.node1, v.node2))
 	}
 }
+
+type isSymmetricInput struct {
+	input  *tree.TNode
+	expRes bool
+}
+
+var isSymmetricInputCases = []*isSymmetricInput{
+	&isSymmetricInput{
+		input: &tree.TNode{
+			Val: 1,
+			Left: &tree.TNode{
+				Val: 2,
+				Left: &tree.TNode{
+					Val:   3,
+					Left:  nil,
+					Right: nil,
+				},
+				Right: &tree.TNode{
+					Val:   4,
+					Left:  nil,
+					Right: nil,
+				},
+			},
+			Right: &tree.TNode{
+				Val: 2,
+				Left: &tree.TNode{
+					Val:   4,
+					Left:  nil,
+					Right: nil,
+				},
+				Right: &tree.TNode{
+					Val:   3,
+					Left:  nil,
+					Right: nil,
+				},
+			},
+		},
+		expRes: true,
+	},
+	&isSymmetricInput{
+		input: &tree.TNode{
+			Val: 1,
+			Left: &tree.TNode{
+				Val:  2,
+				Left: nil,
+				Right: &tree.TNode{
+					Val:   3,
+					Left:  nil,
+					Right: nil,
+				},
+			},
+			Right: &tree.TNode{
+				Val:  2,
+				Left: nil,
+				Right: &tree.TNode{
+					Val:   3,
+					Left:  nil,
+					Right: nil,
+				},
+			},
+		},
+		expRes: false,
+	},
+	&isSymmetricInput{
+		input: &tree.TNode{
+			Val: 1,
+			Left: &tree.TNode{
+				Val: 2,
+				Left: &tree.TNode{
+					Val:   2,
+					Left:  nil,
+					Right: nil,
+				},
+				Right: nil,
+			},
+			Right: &tree.TNode{
+				Val: 2,
+				Left: &tree.TNode{
+					Val:   2,
+					Left:  nil,
+					Right: nil,
+				},
+				Right: nil,
+			},
+		},
+		expRes: false,
+	},
+	&isSymmetricInput{
+		input: &tree.TNode{
+			Val: 1,
+			Left: &tree.TNode{
+				Val:   2,
+				Left:  nil,
+				Right: nil,
+			},
+			Right: &tree.TNode{
+				Val:   3,
+				Left:  nil,
+				Right: nil,
+			},
+		},
+		expRes: false,
+	},
+	&isSymmetricInput{
+		input: &tree.TNode{
+			Val: 5,
+			Left: &tree.TNode{
+				Val:  4,
+				Left: nil,
+				Right: &tree.TNode{
+					Val: 1,
+					Left: &tree.TNode{
+						Val:   2,
+						Left:  nil,
+						Right: nil,
+					},
+					Right: nil,
+				},
+			},
+			Right: &tree.TNode{
+				Val:  1,
+				Left: nil,
+				Right: &tree.TNode{
+					Val: 4,
+					Left: &tree.TNode{
+						Val:   2,
+						Left:  nil,
+						Right: nil,
+					},
+					Right: nil,
+				},
+			},
+		},
+		expRes: false,
+	},
+}
+
+func TestIsSymmetric(t *testing.T) {
+	for i, v := range isSymmetricInputCases {
+		log.Printf("%d %v %v", i, v.expRes, tree.IsSymmetric(v.input))
+		equals(t, v.expRes, tree.IsSymmetric(v.input))
+	}
+}
