@@ -29,7 +29,7 @@ func buildTree(preorder []int, inorder []int) *TNode {
 }
 
 func buildTreeHelper(preOrder, inOrder []int, preStart, inStart, inEnd int) *TNode {
-	if preStart > len(preOrder) || inStart > inEnd {
+	if inStart > inEnd {
 		return nil
 	}
 	currentNode := &TNode{

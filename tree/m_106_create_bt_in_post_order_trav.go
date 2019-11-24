@@ -31,7 +31,7 @@ func buildTree106(inorder, postorder []int) *TNode {
 }
 
 func buildTreeHelper106(inorder, postorder []int, pstart, istart, iend int) *TNode {
-	if pstart < 0 || istart > iend {
+	if istart > iend {
 		return nil
 	}
 	node := &TNode{
