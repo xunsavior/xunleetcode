@@ -1,6 +1,7 @@
 package tree
 
 /*
+	Company: Microsoft, Google, Yahoon, Airbnb
 	Given a binary tree, return the bottom-up level order traversal of its nodes' values. (ie, from left to right, level by level from leaf to root).
 
 	For example:
@@ -18,6 +19,7 @@ package tree
 	]
 */
 
+// Solution 1
 func levelOrderBottom(root *TNode) [][]int {
 	items := [][]int{}
 	if root == nil {
@@ -26,7 +28,7 @@ func levelOrderBottom(root *TNode) [][]int {
 	// we create a map with k->[depth] and v->[slice per each row]
 	itemMap := map[int][]int{}
 	//use recursion to store the each row
-	storeToItemMap(root, 0, itemMap)
+	StoreToItemMap(root, 0, itemMap)
 	//move the read the slice from map using depth index
 	for i := len(itemMap) - 1; i >= 0; i-- {
 		items = append(items, itemMap[i])
@@ -34,12 +36,16 @@ func levelOrderBottom(root *TNode) [][]int {
 	return items
 }
 
-func storeToItemMap(currentNode *TNode, index int, itemMap map[int][]int) {
+//StoreToItemMap ...
+func StoreToItemMap(currentNode *TNode, index int, itemMap map[int][]int) {
 	if currentNode == nil {
 		return
 	}
+	// store the value into the map
 	itemMap[index] = append(itemMap[index], currentNode.Val)
+	//increase depth by 1
 	index++
-	storeToItemMap(currentNode.Left, index, itemMap)
-	storeToItemMap(currentNode.Right, index, itemMap)
+	//store the next depth of node from LEFT to RIGHT
+	StoreToItemMap(currentNode.Left, index, itemMap)
+	StoreToItemMap(currentNode.Right, index, itemMap)
 }

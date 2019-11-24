@@ -22,27 +22,6 @@ func MaxDepth(root *TNode) int {
 	if root == nil {
 		return 0
 	}
-	return getMaxDepth(root, 1)
-}
-
-func getMaxDepth(currentNode *TNode, level int) int {
-	// if current node has no child, then we will return depth
-	if currentNode.Left == nil && currentNode.Right == nil {
-		return level
-	}
-
-	// increase the depth
-	level++
-
-	// one of the chilren is nil
-	if currentNode.Left == nil {
-		return getMaxDepth(currentNode.Right, level)
-	}
-	if currentNode.Right == nil {
-		return getMaxDepth(currentNode.Left, level)
-	}
-
-	// both children are NOT nil
-	l, r := getMaxDepth(currentNode.Left, level), getMaxDepth(currentNode.Right, level)
-	return int(math.Max(float64(l), float64(r)))
+	r, l := MaxDepth(root.Left), MaxDepth(root.Right)
+	return int(math.Max(float64(l), float64(r))) + 1
 }

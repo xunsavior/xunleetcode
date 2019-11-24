@@ -398,3 +398,66 @@ func TestIsSymmetric(t *testing.T) {
 		equals(t, v.expRes, tree.IsSymmetric(v.input))
 	}
 }
+
+// 103
+type ZigzagLevelOrderInput struct {
+	root   *tree.TNode
+	expRes [][]int
+}
+
+var zigzagLevelOrderCases = []*ZigzagLevelOrderInput{
+	&ZigzagLevelOrderInput{
+		root: &tree.TNode{
+			Val: 1,
+			Left: &tree.TNode{
+				Val: 2,
+				Left: &tree.TNode{
+					Val:   4,
+					Left:  nil,
+					Right: nil,
+				},
+				Right: nil,
+			},
+			Right: &tree.TNode{
+				Val:  3,
+				Left: nil,
+				Right: &tree.TNode{
+					Val:   5,
+					Left:  nil,
+					Right: nil,
+				},
+			},
+		},
+		expRes: [][]int{[]int{1}, []int{3, 2}, []int{4, 5}},
+	},
+	&ZigzagLevelOrderInput{
+		root: &tree.TNode{
+			Val: 3,
+			Left: &tree.TNode{
+				Val:   9,
+				Left:  nil,
+				Right: nil,
+			},
+			Right: &tree.TNode{
+				Val: 20,
+				Left: &tree.TNode{
+					Val:   15,
+					Left:  nil,
+					Right: nil,
+				},
+				Right: &tree.TNode{
+					Val:   7,
+					Left:  nil,
+					Right: nil,
+				},
+			},
+		},
+		expRes: [][]int{[]int{3}, []int{20, 9}, []int{15, 7}},
+	},
+}
+
+func TestZigzagLevelOrderCases(t *testing.T) {
+	for _, v := range zigzagLevelOrderCases {
+		equals(t, v.expRes, tree.ZigzagLevelOrder(v.root))
+	}
+}
