@@ -43,9 +43,7 @@ func storeValToMap(currentNode *TNode, depth int, isLeftToRight bool, itemMap ma
 	} else {
 		itemMap[depth] = append([]int{currentNode.Val}, itemMap[depth]...)
 	}
-	// next layer
-	depth++
-	// store it to the map
-	storeValToMap(currentNode.Left, depth, !isLeftToRight, itemMap)
-	storeValToMap(currentNode.Right, depth, !isLeftToRight, itemMap)
+	// next layer and store it to the map
+	storeValToMap(currentNode.Left, depth+1, !isLeftToRight, itemMap)
+	storeValToMap(currentNode.Right, depth+1, !isLeftToRight, itemMap)
 }

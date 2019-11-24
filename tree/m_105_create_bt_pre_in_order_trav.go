@@ -15,6 +15,12 @@ package tree
 		/  \
 	   15   7
 */
+
+/*
+	Solution
+	we can find the ROOT in preorder slice (from start to end)
+	we find the index of that ROOT in inorder slice, and split it with left and right nodes
+*/
 func buildTree(preorder []int, inorder []int) *TNode {
 	if len(preorder) == 0 || len(inorder) == 0 {
 		return nil
