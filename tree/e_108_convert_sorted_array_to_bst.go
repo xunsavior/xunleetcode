@@ -5,7 +5,12 @@ func sortedArrayToBST108(nums []int) *TNode {
 	if size == 0 {
 		return nil
 	}
-	return helper108(0, size-1, nums)
+	mid := size / 2
+	return &TNode{
+		Val:   nums[mid],
+		Left:  sortedArrayToBST108(nums[:mid]),
+		Right: sortedArrayToBST108(nums[mid+1:]),
+	}
 }
 
 func helper108(start, end int, nums []int) *TNode {

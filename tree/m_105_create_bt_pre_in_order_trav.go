@@ -22,30 +22,25 @@ package tree
 	we find the index of that ROOT in inorder slice, and split it with left and right nodes
 */
 func buildTree(preorder []int, inorder []int) *TNode {
-	if len(preorder) == 0 || len(inorder) == 0 {
-		return nil
-	}
-	return buildTreeHelper(preorder, inorder, 0, 0, len(inorder)-1)
-}
+	presize, insize := len(preorder), len(inorder)
 
-func buildTreeHelper(preOrder, inOrder []int, preStart, inStart, inEnd int) *TNode {
-	if inStart > inEnd {
+	if presize == 0 || insize == 0 {
 		return nil
 	}
-	currentNode := &TNode{
-		Val:   preOrder[preStart],
-		Left:  nil,
-		Right: nil,
-	}
-	// find the index of the value in inOrder slice
-	tempInStart := inStart
-	for i := inStart; i <= inEnd; i++ {
-		if inOrder[i] == currentNode.Val {
-			tempInStart = i
+
+	// find the root index in inorder slice
+	tmpStart := 0
+	for i := 0; i < insize; i++ {
+		if inorder[i] == preorder[0] {
+			tmpStart = i
 			break
 		}
 	}
-	currentNode.Left = buildTreeHelper(preOrder, inOrder, preStart+1, inStart, tempInStart-1)
-	currentNode.Right = buildTreeHelper(preOrder, inOrder, preStart+tempInStart-inStart+1, tempInStart+1, inEnd)
-	return currentNode
+
+	// we set preorder[0] as the root node, and get its left and right using recursion
+	return &TNode{
+		Val:   preorder[0],
+		Left:  buildTree(preorder[1:tmpStart+1], inorder[:tmpStart]),
+		Right: buildTree(preorder[tmpStart+1:], inorder[tmpStart+1:]),
+	}
 }
