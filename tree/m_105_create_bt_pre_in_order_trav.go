@@ -19,7 +19,8 @@ package tree
 /*
 	Solution
 	we can find the ROOT in preorder slice (from start to end)
-	we find the index of that ROOT in inorder slice, and split it with left and right nodes
+	we find the index of that ROOT in inorder slice, and split it with left and right subtree
+	we pass the sub-slices as subtree to the next level
 */
 func buildTree(preorder []int, inorder []int) *TNode {
 	presize, insize := len(preorder), len(inorder)
