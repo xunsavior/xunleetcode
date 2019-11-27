@@ -17,13 +17,19 @@ func main() {
 */
 
 func sampleDPDemo() {
-	m := map[string]int{}
-	//addMap(m)
-	log.Println(m)
+	//nums := []int{1, 2}
+	s := [][]int{}
+	//log.Println(cap(nums))
+	addMap([]int{1, 2}, &s)
+	//log.Println(cap(nums))
+	log.Println(s)
 }
 
-func addMap(m map[string]int) {
-	m["1"] = 1
+func addMap(nums []int, s *[][]int) {
+	nums = append(nums, 3)
+	*s = append(*s, nums)
+	nums = append(nums, 4)
+	nums = append(nums, 5)
 }
 
 // Fibonacci
