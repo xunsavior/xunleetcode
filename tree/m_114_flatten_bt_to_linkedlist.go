@@ -25,7 +25,10 @@ The flattened tree should look like:
 */
 
 /*
-   connect current node's right subtree to the most right leaf node of its left subtree
+   Recoursion
+   1. connect current node's right subtree to the most right leaf node of its left subtree
+   2. use current left subtree to replace current right subtree
+   3. set current orignal left subtree to nil
 */
 func flatten114(root *TNode) {
 	if root == nil {
