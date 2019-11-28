@@ -34,23 +34,24 @@ func PathSum113(root *TNode, sum int) [][]int {
 
 func helper113(current *TNode, sum int, nums []int, output *[][]int) {
 	l, r := current.Left, current.Right
+	nums = append([]int(nil), nums...)
 	nums = append(nums, current.Val)
 	if l == nil && r == nil {
 		if current.Val == sum {
-			*output = append(*output, nums[:len(nums):len(nums)])
+			*output = append(*output, nums)
 		}
 		return
 	}
 
 	if r == nil || l == nil {
 		if r == nil {
-			helper113(l, sum-current.Val, nums[:len(nums):len(nums)], output)
+			helper113(l, sum-current.Val, nums, output)
 		} else {
-			helper113(r, sum-current.Val, nums[:len(nums):len(nums)], output)
+			helper113(r, sum-current.Val, nums, output)
 		}
 		return
 	}
 
-	helper113(l, sum-current.Val, nums[:len(nums):len(nums)], output)
-	helper113(r, sum-current.Val, nums[:len(nums):len(nums)], output)
+	helper113(l, sum-current.Val, nums, output)
+	helper113(r, sum-current.Val, nums, output)
 }
