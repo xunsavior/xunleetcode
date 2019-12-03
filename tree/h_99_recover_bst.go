@@ -1,5 +1,7 @@
 package tree
 
+import "log"
+
 /*
 Two elements of a binary search tree (BST) are swapped by mistake.
 Recover the tree without changing its structure.
@@ -90,5 +92,6 @@ func recoverTree99(root *TNode) {
 			root = root.Right
 		}
 	}
+	log.Println(x, y)
 	x.Val, y.Val = y.Val, x.Val
 }
