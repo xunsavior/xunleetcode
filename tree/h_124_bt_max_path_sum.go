@@ -28,6 +28,7 @@ Input: [-10,9,20,null,null,15,7]
    15   7
 Output: 42
 
+Similar problems: 543, 687
 */
 
 func maxPathSum124(root *TNode) int {
