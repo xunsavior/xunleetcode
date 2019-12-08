@@ -3,6 +3,8 @@ package tree
 import "math"
 
 /*
+Also see: 543, 687
+
 Given a non-empty binary tree, find the maximum path sum.
 
 For this problem, a path is defined as any sequence of nodes
@@ -27,8 +29,6 @@ Input: [-10,9,20,null,null,15,7]
     /  \
    15   7
 Output: 42
-
-Similar problems: 543, 687
 */
 
 func maxPathSum124(root *TNode) int {

@@ -3,6 +3,8 @@ package tree
 import "math"
 
 /*
+Also see: 124 and 543
+
 Given a binary tree, find the length of the longest path where each node in the path has the same value.
 This path may or may not pass through the root.
 The length of path between two nodes is represented by the number of edges between them.
@@ -26,8 +28,8 @@ Input:
            / \   \
           4   4   5
 Output: 2
-
 Note: The given binary tree has not more than 10000 nodes. The height of the tree is not more than 1000.
+
 */
 
 func longestUnivaluePath687(root *TNode) int {
