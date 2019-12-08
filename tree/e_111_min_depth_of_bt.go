@@ -3,22 +3,28 @@ package tree
 import "math"
 
 /*
-	Given a binary tree, find its minimum depth.
+Also see: 104
 
-	The minimum depth is the number of nodes along the shortest
-	path from the root node down to the nearest leaf node.
+Given a binary tree, find its minimum depth.
 
-	Note: A leaf is a node with no children.
+The minimum depth is the number of nodes along the shortest
+path from the root node down to the nearest leaf node.
 
-	Example:
-	Given binary tree [3,9,20,null,null,15,7],
+Note: A leaf is a node with no children.
 
-		3
-	   / \
-	  9  20
-		/  \
-	   15   7
-	return its minimum depth = 2.
+Example:
+Given binary tree [3,9,20,null,null,15,7],
+
+    3
+   / \
+  9  20
+    /  \
+   15   7
+return its minimum depth = 2.
+*/
+
+/*
+	Important: If one child is nil, then we will return the min depth of the other child
 */
 func minDepth111(root *TNode) int {
 	if root == nil {
@@ -37,6 +43,6 @@ func minDepth111(root *TNode) int {
 		return minDepth111(root.Left) + 1
 	}
 
-	r, l := minDepth111(root.Left)+1, minDepth111(root.Right)+1
-	return int(math.Min(float64(r), float64(l)))
+	l, r := minDepth111(root.Left)+1, minDepth111(root.Right)+1
+	return int(math.Min(float64(l), float64(r)))
 }
