@@ -1,7 +1,7 @@
 package tree
 
 /*
-Also see: 107
+Also see: 107, 199
 
 Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
 
@@ -20,18 +20,27 @@ return its level order traversal as:
 ]
 */
 
-func levelOrder(root *TNode) [][]int {
+func levelOrder102(root *TNode) [][]int {
 	items := [][]int{}
-	if root == nil {
-		return [][]int{}
-	}
-	// we create a map with k->[depth] and v->[slice per each row]
-	itemMap := map[int][]int{}
-	//use recursion to store the each row
-	StoreToItemMap(root, 0, itemMap)
-	//move the read the slice from map using depth index
-	for i := 0; i < len(itemMap); i++ {
-		items = append(items, itemMap[i])
-	}
+	helper102(root, 0, &items)
 	return items
+}
+
+/*
+	Use preorder traversal to store every val to the 2d array
+	from left to right
+*/
+func helper102(current *TNode, depth int, output *[][]int) {
+	if current == nil {
+		return
+	}
+	// we need to check if the array have already added this row(depth) of nodes
+	if depth > len(*output)-1 {
+		*output = append(*output, []int{current.Val})
+	} else {
+		(*output)[depth] = append((*output)[depth], current.Val)
+	}
+
+	helper102(current.Left, depth+1, output)
+	helper102(current.Right, depth+1, output)
 }
