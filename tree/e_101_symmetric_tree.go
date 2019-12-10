@@ -24,7 +24,7 @@ But the following [1,2,2,null,3,null,3] is not:
 Note: Bonus points if you could solve it both recursively and iteratively.
 */
 
-// IsSymmetric ...
+// IsSymmetric ... top-down recursion
 func IsSymmetric(root *TNode) bool {
 	if root == nil {
 		return true

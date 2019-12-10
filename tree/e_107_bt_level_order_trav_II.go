@@ -20,29 +20,29 @@ return its bottom-up level order traversal as:
 ]
 */
 
-func levelOrderBottom107(root *TNode) [][]int {
-	items := [][]int{}
-	// we create a map with k->[depth] and v->[slice per each row]
-	itemMap := map[int][]int{}
-	//use recursion to store the each row
-	helper107(root, 0, itemMap)
-	//move the read the slice from map using depth index
-	for i := len(itemMap) - 1; i >= 0; i-- {
-		items = append(items, itemMap[i])
+func levelOrderBottom(root *TNode) [][]int {
+	if root == nil {
+		return nil
 	}
-	return items
+	output := [][]int{}
+	helper107(root, 0, &output)
+	for i, j := 0, len(output)-1; i < j; i, j = i+1, j-1 {
+		output[i], output[j] = output[j], output[i]
+	}
+	return output
 }
 
-//StoreToItemMap ...
-func helper107(currentNode *TNode, index int, itemMap map[int][]int) {
-	if currentNode == nil {
+func helper107(current *TNode, depth int, output *[][]int) {
+	if current == nil {
 		return
 	}
-	// store the value into the map
-	itemMap[index] = append(itemMap[index], currentNode.Val)
-	//increase depth by 1
-	index++
-	//store the next depth of node from LEFT to RIGHT
-	helper107(currentNode.Left, index, itemMap)
-	helper107(currentNode.Right, index, itemMap)
+
+	if depth > len(*output)-1 {
+		*output = append(*output, []int{current.Val})
+	} else {
+		(*output)[depth] = append((*output)[depth], current.Val)
+	}
+
+	helper107(current.Left, depth+1, output)
+	helper107(current.Right, depth+1, output)
 }

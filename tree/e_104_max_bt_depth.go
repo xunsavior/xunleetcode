@@ -22,7 +22,7 @@ Given binary tree [3,9,20,null,null,15,7],
 return its depth = 3.
 */
 
-// MaxDepth104 ...
+// MaxDepth104 ... bottom-up solution
 func MaxDepth104(root *TNode) int {
 	if root == nil {
 		return 0

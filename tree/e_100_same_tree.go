@@ -33,7 +33,7 @@ Input:     1         1
 Output: false
 */
 
-// IsSameTree100 ...
+// IsSameTree100 Top-down recursion
 func IsSameTree100(p *TNode, q *TNode) bool {
 	// check if reach the leaf node for both tree
 	if p == nil && q == nil {

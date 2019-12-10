@@ -1,28 +1,47 @@
 package main
 
-//nums "leetcode/nums"
+import (
+	"fmt"
+	"leetcode/tree"
+	"math"
+)
 
 func main() {
-	sampleDPDemo()
+	test(&tree.TNode{
+		Val: 1,
+		Left: &tree.TNode{
+			Val: 2,
+			Left: &tree.TNode{
+				Val:   4,
+				Left:  nil,
+				Right: nil,
+			},
+			Right: &tree.TNode{
+				Val:   6,
+				Left:  nil,
+				Right: nil,
+			},
+		},
+		Right: &tree.TNode{
+			Val:  3,
+			Left: nil,
+			Right: &tree.TNode{
+				Val:   5,
+				Left:  nil,
+				Right: nil,
+			},
+		},
+	})
 }
 
-/*
-	f(0) = 0
-	f(1) = 1
-	f(2) = f(1) + f(0)
-	...
-	f(n) = f(n-1) + f(n-2)
-*/
-
-func sampleDPDemo() {
-
-}
-
-func addMap(nums []int, s *[][]int) {
-	nums = append(nums, 3)
-	*s = append(*s, nums)
-	nums = append(nums, 4)
-	nums = append(nums, 5)
+func test(current *tree.TNode) int {
+	if current == nil {
+		return 0
+	}
+	r, l := test(current.Left)+1, test(current.Right)+1
+	max := int(math.Max(float64(l), float64(r)))
+	fmt.Println(current.Val, max)
+	return max
 }
 
 // Fibonacci
