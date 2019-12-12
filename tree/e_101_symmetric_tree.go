@@ -1,6 +1,8 @@
 package tree
 
 /*
+Company: Microsoft, Bloomberg, LinkedIn
+
 Also see: 100
 
 Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).

@@ -3,6 +3,8 @@ package tree
 import "math"
 
 /*
+Company: Facebook
+
 Also see: 124, 687
 
 Given a binary tree, you need to compute the length of the diameter of the tree.

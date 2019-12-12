@@ -3,6 +3,8 @@ package tree
 import "math"
 
 /*
+Company: Uber, LinkedIn, Apple, Yahoo
+
 Also see: 111
 
 Given a binary tree, find its maximum depth.

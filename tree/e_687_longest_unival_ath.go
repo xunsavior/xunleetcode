@@ -3,6 +3,8 @@ package tree
 import "math"
 
 /*
+Company: Google
+
 Also see: 124 and 543
 
 Given a binary tree, find the length of the longest path where each node in the path has the same value.

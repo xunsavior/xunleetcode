@@ -3,6 +3,8 @@ package tree
 import "math"
 
 /*
+Company: Unknown
+
 Also see: 104
 
 Given a binary tree, find its minimum depth.
