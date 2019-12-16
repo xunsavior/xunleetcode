@@ -7,40 +7,28 @@ import (
 )
 
 func main() {
-	test(&tree.TNode{
-		Val: 1,
+	val := test(&tree.TNode{
+		Val: 2,
 		Left: &tree.TNode{
-			Val: 2,
-			Left: &tree.TNode{
-				Val:   4,
-				Left:  nil,
-				Right: nil,
-			},
-			Right: &tree.TNode{
-				Val:   6,
-				Left:  nil,
-				Right: nil,
-			},
+			Val:   1,
+			Left:  nil,
+			Right: nil,
 		},
 		Right: &tree.TNode{
-			Val:  3,
-			Left: nil,
-			Right: &tree.TNode{
-				Val:   5,
-				Left:  nil,
-				Right: nil,
-			},
+			Val:   3,
+			Left:  nil,
+			Right: nil,
 		},
 	})
+	fmt.Println(val)
 }
 
 func test(current *tree.TNode) int {
 	if current == nil {
 		return 0
 	}
-	r, l := test(current.Left)+1, test(current.Right)+1
-	max := int(math.Max(float64(l), float64(r)))
-	fmt.Println(current.Val, max)
+	max := math.MinInt32
+	tree.Helper333(current, &max) //helper333()
 	return max
 }
 
