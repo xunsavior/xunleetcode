@@ -3,33 +3,19 @@ package main
 import (
 	"fmt"
 	"leetcode/tree"
-	"math"
 )
 
 func main() {
-	val := test(&tree.TNode{
-		Val: 2,
-		Left: &tree.TNode{
-			Val:   1,
-			Left:  nil,
-			Right: nil,
-		},
+	val := tree.MaximumAverageSubtree1120(&tree.TNode{
+		Val:  2,
+		Left: nil,
 		Right: &tree.TNode{
-			Val:   3,
+			Val:   1,
 			Left:  nil,
 			Right: nil,
 		},
 	})
 	fmt.Println(val)
-}
-
-func test(current *tree.TNode) int {
-	if current == nil {
-		return 0
-	}
-	max := math.MinInt32
-	tree.Helper333(current, &max) //helper333()
-	return max
 }
 
 // Fibonacci
