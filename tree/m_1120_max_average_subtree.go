@@ -43,7 +43,6 @@ func helper1120(current *TNode, max *float64) (size int, sum float64) {
 	rsize, rsum := helper1120(r, max)
 
 	size, sum = lsize+rsize+1, lsum+rsum+float64(current.Val)
-
 	average := sum / float64(size)
 	if average > *max {
 		*max = average
