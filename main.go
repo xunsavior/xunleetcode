@@ -1,21 +1,40 @@
 package main
 
 import (
-	"fmt"
 	"leetcode/tree"
 )
 
 func main() {
-	val := tree.MaximumAverageSubtree1120(&tree.TNode{
-		Val:  2,
-		Left: nil,
-		Right: &tree.TNode{
-			Val:   1,
-			Left:  nil,
-			Right: nil,
+	node := &tree.TNode{
+		Val: 5,
+		Left: &tree.TNode{
+			Val: 4,
+			Left: &tree.TNode{
+				Val: 11,
+				Left: &tree.TNode{
+					Val: 7,
+				},
+				Right: &tree.TNode{
+					Val: 2,
+				},
+			},
 		},
-	})
-	fmt.Println(val)
+		Right: &tree.TNode{
+			Val: 8,
+			Left: &tree.TNode{
+				Val: 13,
+			},
+			Right: &tree.TNode{
+				Val: 4,
+				Left: &tree.TNode{
+					Val: 5,
+				},
+				Right: &tree.TNode{
+					Val: 1,
+				},
+			},
+		},
+	}
 }
 
 // Fibonacci
