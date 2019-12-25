@@ -1,7 +1,5 @@
 package tree
 
-import "strconv"
-
 /*
 Company: Facebook, Amazon
 
@@ -39,28 +37,20 @@ Therefore, sum = 495 + 491 + 40 = 1026.
 */
 
 func sumNumbers129(root *TNode) int {
-	sum := 0
-	if root == nil {
-		return sum
-	}
-	helper129(root, "", &sum)
-	return sum
+	return helper129(root, 0)
 }
 
 // top-down solution
-func helper129(current *TNode, nums string, sum *int) {
+func helper129(current *TNode, prefix int) int {
 	if current == nil {
-		return
+		return 0
 	}
+
 	l, r := current.Left, current.Right
 
 	if l == nil && r == nil {
-		if num, err := strconv.Atoi(nums + strconv.Itoa(current.Val)); err == nil {
-			*sum += num
-		}
-		return
+		return prefix*10 + current.Val
 	}
 
-	helper129(current.Left, nums+strconv.Itoa(current.Val), sum)
-	helper129(current.Right, nums+strconv.Itoa(current.Val), sum)
+	return helper129(l, prefix*10+current.Val) + helper129(r, prefix*10+current.Val)
 }
