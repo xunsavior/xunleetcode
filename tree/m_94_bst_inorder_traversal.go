@@ -1,6 +1,7 @@
 package tree
 
 /*
+	Company: Amazon(5), Google(3), Microsoft(2)
 	Given a binary tree, return the inorder traversal of its nodes' values.
 	Example:
 	Input: [1,null,2,3]
@@ -12,37 +13,17 @@ package tree
 	Output: [1,3,2]
 */
 
-// InOrderTraversal ...
-func InOrderTraversal(root *TNode) []int {
-	output := make([]int, 0)
-	return addValToSlice(root, output)
+func inorderTraversal94(root *TNode) []int {
+	output := []int{}
+	helper94(root, &output)
+	return output
 }
 
-func addValToSlice(currentNode *TNode, output []int) []int {
-	// Special case: return empty slice if root is nil
-	if currentNode == nil {
-		return []int{}
+func helper94(current *TNode, output *[]int) {
+	if current == nil {
+		return
 	}
-	lNode := currentNode.Left
-	rNode := currentNode.Right
-	/*
-		if the LEFT node of CURRENT node is NOT nil, we simply move to that
-		LEFT node
-	*/
-	if lNode != nil {
-		output = addValToSlice(lNode, output)
-	}
-	/*
-		if the LEFT node of current node is nil, we simply add the value of
-		current node to the slice
-	*/
-	output = append(output, currentNode.Val)
-	/*
-		if the RIGHT node of current node is NOT nil, we simply move to
-		that RIGHT node
-	*/
-	if rNode != nil {
-		output = addValToSlice(rNode, output)
-	}
-	return output
+	helper94(current.Left, output)
+	*output = append(*output, current.Val)
+	helper94(current.Right, output)
 }

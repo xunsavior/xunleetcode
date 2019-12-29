@@ -1,6 +1,8 @@
 package tree
 
 /*
+Company: Google(2), Amazon(2), Expedia(2)
+
 Find the sum of all left leaves in a given binary tree.
 
 Example:
