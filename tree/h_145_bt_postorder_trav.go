@@ -1,0 +1,43 @@
+package tree
+
+/*
+Company: Google, Amazon, Facebook, Uber
+
+Given a binary tree, return the postorder traversal of its nodes' values.
+
+Example:
+Input: [1,null,2,3]
+   1
+    \
+     2
+    /
+   3
+Output: [3,2,1]
+
+Follow up: Recursive solution is trivial, could you do it iteratively?
+*/
+
+/*
+	We can use reverse postorder to store the node into stack
+*/
+func postorderTraversal145(root *TNode) []int {
+	if root == nil {
+		return []int{}
+	}
+	output := []int{}
+	stack := []*TNode{root}
+	for len(stack) != 0 {
+		current := stack[len(stack)-1]
+		output = append([]int{current.Val}, output...)
+		stack = stack[:len(stack)-1]
+
+		l, r := current.Left, current.Right
+		if l != nil {
+			stack = append(stack, l)
+		}
+		if r != nil {
+			stack = append(stack, r)
+		}
+	}
+	return output
+}
