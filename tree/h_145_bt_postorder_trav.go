@@ -18,7 +18,8 @@ Follow up: Recursive solution is trivial, could you do it iteratively?
 */
 
 /*
-	We can use reverse postorder to store the node into stack
+	We can use REVERSE postorder to store the node into stack, which
+	is root -> right -> left
 */
 func postorderTraversal145(root *TNode) []int {
 	if root == nil {
@@ -32,6 +33,7 @@ func postorderTraversal145(root *TNode) []int {
 		stack = stack[:len(stack)-1]
 
 		l, r := current.Left, current.Right
+		// note: it is stack that LIFO, so we store LEFT node first and then right node
 		if l != nil {
 			stack = append(stack, l)
 		}

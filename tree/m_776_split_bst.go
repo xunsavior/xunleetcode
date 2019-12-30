@@ -54,7 +54,6 @@ func splitBST776(root *TNode, V int) []*TNode {
 
 	l, r := helper776(root, nil, V), root
 	if l != nil && r != nil {
-		// check if
 		if l.Val == r.Val {
 			return []*TNode{l, r.Right}
 		}
