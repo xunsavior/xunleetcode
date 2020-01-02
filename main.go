@@ -1,48 +1,17 @@
 package main
 
 import (
-	"leetcode/tree"
-	"log"
+	"fmt"
+	"sort"
 )
 
 func main() {
-	node := &tree.TNode{
-		Val:  1,
-		Left: nil,
-		Right: &tree.TNode{
-			Val: 2,
-			Left: &tree.TNode{
-				Val: 3,
-			},
-			Right: nil,
-		},
-	}
-	log.Println(inorderTraversal94(node))
+	test([]int{3, 2, 1})
 }
 
-func inorderTraversal94(root *tree.TNode) []int {
-	if root == nil {
-		return nil
-	}
-	output := []int{}
-	stack := []*tree.TNode{root}
-	for len(stack) > 0 {
-		top := stack[len(stack)-1]
-		l, r := top.Left, top.Right
-		if l != nil {
-			stack = append(stack, l)
-		} else {
-			output = append(output, top.Val)
-			stack = stack[0 : len(stack)-1]
-			if len(stack) > 0 {
-				stack[len(stack)-1].Left = nil
-			}
-			if r != nil {
-				stack = append(stack, r)
-			}
-		}
-	}
-	return output
+func test(nums []int) {
+	sort.Ints(nums)
+	fmt.Println(nums)
 }
 
 // Fibonacci

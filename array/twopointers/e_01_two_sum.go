@@ -1,4 +1,4 @@
-package collections
+package twopointers
 
 /*
 Company: Amazon(197), Google(88), Adobe(56), Apple(43), Facebook(26)
@@ -11,14 +11,13 @@ Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
 */
 
-func twoSum1(nums []int, target int) []int {
+func twoSum01(nums []int, target int) []int {
 	numMap := map[int]int{}
 	for i, v := range nums {
 		numMap[v] = i
 	}
 
 	for i, v := range nums {
-		// remember to check if index != i
 		if index, ok := numMap[target-v]; ok && index != i {
 			return []int{i, index}
 		}
