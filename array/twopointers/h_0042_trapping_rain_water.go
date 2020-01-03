@@ -24,7 +24,7 @@ func trap42(height []int) int {
 	lMax, rMax := 0, 0
 
 	for l < r {
-		if lMax < rMax {
+		if height[l] < height[r] {
 			lMax = int(math.Max(float64(height[l]), float64(lMax)))
 			res += lMax - height[l]
 			l++
