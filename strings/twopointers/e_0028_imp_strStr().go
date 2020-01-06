@@ -20,5 +20,23 @@ For the purpose of this problem, we will return 0 when needle is an empty string
 */
 
 func strStr28(haystack string, needle string) int {
-	return 0
+	hSize, nSize := len(haystack), len(needle)
+	if nSize > hSize {
+		return -1
+	}
+
+	if nSize == 0 {
+		return 0
+	}
+
+	for i := range haystack {
+		if i+nSize > hSize {
+			break
+		}
+		if haystack[i:i+nSize] == needle {
+			return i
+		}
+	}
+
+	return -1
 }

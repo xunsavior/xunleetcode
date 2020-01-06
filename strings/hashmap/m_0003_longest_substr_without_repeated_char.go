@@ -1,10 +1,5 @@
 package twopointers
 
-import (
-	"strings"
-	"unicode/utf8"
-)
-
 /*
 Company: Amazon(37), Microsoft(14), Cisco(13), Google(12), Facebook(11)
 Given a string, find the length of the longest substring without repeating characters.
@@ -28,20 +23,23 @@ Note that the answer must be a substring, "pwke" is a subsequence and not a subs
 */
 
 func lengthOfLongestSubstring3(s string) int {
-	substr := ""
-	maxLen := 0
-
-	for _, v := range s {
-		strValue := string(v)
-		repeatedIndex := strings.Index(substr, strValue)
-		substr += strValue
-		if repeatedIndex != -1 {
-			substr = substr[repeatedIndex+1:]
-		}
-		if size := utf8.RuneCountInString(substr); size >= maxLen {
-			maxLen = size
+	n := len(s)
+	if n < 1 {
+		return n
+	}
+	start, res := -1, 0
+	charMap := make(map[string]int)
+	for i := range s {
+		str := string(s[i])
+		index, ok := charMap[str]
+		if ok && index > start {
+			start, charMap[str] = charMap[str], i
+		} else {
+			charMap[str] = i
+			if i-start > res {
+				res = i - start
+			}
 		}
 	}
-
-	return maxLen
+	return res
 }

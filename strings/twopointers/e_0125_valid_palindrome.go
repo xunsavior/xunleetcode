@@ -1,5 +1,7 @@
 package twopointers
 
+import "unicode"
+
 /*
 Company: Facebook(41), Microsoft(9), Yandex(5), Apple(4), Google(2), Amazon(2)
 Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
@@ -16,5 +18,26 @@ Output: false
 */
 
 func isPalindrome125(s string) bool {
-	return false
+	n := len(s)
+	if s == "" {
+		return true
+	}
+	l, r := 0, n-1
+	for l < r {
+		lv, rv := rune(s[l]), rune(s[r])
+		if !unicode.IsNumber(lv) && !unicode.IsLetter(lv) {
+			l++
+			continue
+		}
+		if !unicode.IsNumber(rv) && !unicode.IsLetter(rv) {
+			r--
+			continue
+		}
+		if unicode.ToLower(lv) != unicode.ToLower(rv) {
+			return false
+		}
+		l++
+		r--
+	}
+	return true
 }
