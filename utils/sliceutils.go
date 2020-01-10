@@ -8,3 +8,12 @@ func Sum(nums []float64) float64 {
 	}
 	return sum
 }
+
+// StringToRunes ...
+func StringToRunes(str string) []rune {
+	runes := make([]rune, 0, len(str))
+	for _, v := range str {
+		runes = append(runes, v)
+	}
+	return runes
+}

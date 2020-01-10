@@ -1,4 +1,4 @@
-package twopointers
+package hashtable
 
 /*
 Company: Amazon(197), Google(88), Adobe(56), Apple(43), Facebook(26)

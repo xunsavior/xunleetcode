@@ -1,17 +1,7 @@
 package main
 
-import (
-	"fmt"
-	"sort"
-)
-
 func main() {
-	test([]int{3, 2, 1})
-}
 
-func test(nums []int) {
-	sort.Ints(nums)
-	fmt.Println(nums)
 }
 
 // Fibonacci
