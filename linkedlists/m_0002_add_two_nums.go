@@ -1,4 +1,4 @@
-package linklists
+package linkedlists
 
 import "fmt"
 
@@ -19,12 +19,6 @@ import "fmt"
 	Output: 8 -> 1
 	Explanation: 342 + 465 = 807.
 */
-
-//ListNode ...
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
 
 //AddTwoNumbers ...
 func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
