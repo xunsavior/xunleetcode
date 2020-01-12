@@ -2,6 +2,7 @@ package stack
 
 /*
 Company: Amazon(10), Apple(5), LinkedIn(3), Google(2), Microsoft(2), Uber(2)
+
 Given a list of daily temperatures T, return a list such that, for each
 day in the input, tells you how many days you would have to wait until
 a warmer temperature. If there is no future day for which this is possible,
@@ -13,5 +14,15 @@ Note: The length of temperatures will be in the range [1, 30000]. Each temperatu
 */
 
 func dailyTemperatures739(T []int) []int {
-	return nil
+	stack, res := make([]int, 0), make([]int, len(T))
+	for i, v := range T {
+		for len(stack) != 0 && v > T[stack[len(stack)-1]] {
+			indexDif := i - stack[len(stack)-1]
+			res[stack[len(stack)-1]] = indexDif
+			stack = stack[:len(stack)-1]
+		}
+		// store the index instead of val
+		stack = append(stack, i)
+	}
+	return res
 }

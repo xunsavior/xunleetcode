@@ -30,5 +30,21 @@ The length of both nums1 and nums2 would not exceed 1000.
 */
 
 func nextGreaterElement496(nums1 []int, nums2 []int) []int {
-	return nil
+	dict, stack, res := make(map[int]int), make([]int, 0), make([]int, 0)
+	for _, v := range nums2 {
+		// remember to use while loop to add previous nums if it is in descending sequence
+		for len(stack) != 0 && v > stack[len(stack)-1] {
+			dict[stack[len(stack)-1]] = v
+			stack = stack[:len(stack)-1]
+		}
+		stack = append(stack, v)
+	}
+	for _, v := range nums1 {
+		if num, ok := dict[v]; ok {
+			res = append(res, num)
+			continue
+		}
+		res = append(res, -1)
+	}
+	return res
 }

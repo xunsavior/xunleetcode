@@ -32,5 +32,26 @@ Output: true
 
 // IsValid ...
 func isValid20(s string) bool {
-	return true
+	if s == "" {
+		return true
+	}
+	bytes := []byte{}
+	for i := range s {
+		if string(s[i]) == "(" {
+			bytes = append(bytes, s[i]+1)
+		} else if string(s[i]) == "[" || string(s[i]) == "{" {
+			bytes = append(bytes, s[i]+2)
+		} else {
+			n := len(bytes)
+			if n == 0 {
+				return false
+			}
+			pop := bytes[n-1]
+			bytes = bytes[0 : n-1]
+			if pop != s[i] {
+				return false
+			}
+		}
+	}
+	return len(bytes) == 0
 }
