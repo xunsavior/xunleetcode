@@ -1,4 +1,6 @@
-package tree
+package stack
+
+import "leetcode/tree"
 
 /*
 Company: Amazon(5), Google(3), Microsoft(2)
@@ -16,12 +18,12 @@ Follow up: Recursive solution is trivial, could you do it iteratively?
 */
 
 // iterative way
-func inorderTraversal94(root *TNode) []int {
+func inorderTraversal94(root *tree.TNode) []int {
 	if root == nil {
 		return nil
 	}
 	output := []int{}
-	stack := []*TNode{root}
+	stack := []*tree.TNode{root}
 	for len(stack) > 0 {
 		top := stack[len(stack)-1]
 		l, r := top.Left, top.Right
@@ -43,7 +45,7 @@ func inorderTraversal94(root *TNode) []int {
 }
 
 // recoursion way
-func helper94(current *TNode, output *[]int) {
+func helper94(current *tree.TNode, output *[]int) {
 	if current == nil {
 		return
 	}

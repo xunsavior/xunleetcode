@@ -1,4 +1,6 @@
-package tree
+package stack
+
+import "leetcode/tree"
 
 /*
 Company: Google, Amazon, Facebook, Uber
@@ -21,12 +23,12 @@ Follow up: Recursive solution is trivial, could you do it iteratively?
 	We can use REVERSE postorder to store the node into stack, which
 	is root -> right -> left
 */
-func postorderTraversal145(root *TNode) []int {
+func postorderTraversal145(root *tree.TNode) []int {
 	if root == nil {
 		return []int{}
 	}
 	output := []int{}
-	stack := []*TNode{root}
+	stack := []*tree.TNode{root}
 	for len(stack) != 0 {
 		current := stack[len(stack)-1]
 		output = append([]int{current.Val}, output...)

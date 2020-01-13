@@ -20,22 +20,24 @@ minStack.top();      --> Returns 0.
 minStack.getMin();   --> Returns -2.
 */
 
-type StackNode struct {
+type node155 struct {
 	Val  int
-	Next *StackNode
+	Next *node155
 	Min  int
 }
 
+// MinStack ...
 type MinStack struct {
-	Head *StackNode
+	Head *node155
 }
 
-func Constructor() MinStack {
+// Constructor155 ...
+func Constructor155() MinStack {
 	return MinStack{}
 }
 
-func (this *MinStack) Push(x int) {
-	newStack := &StackNode{Val: x}
+func (this *MinStack) Push155(x int) {
+	newStack := &node155{Val: x}
 	if this.Head == nil {
 		newStack.Min = x
 		this.Head = newStack
@@ -49,11 +51,11 @@ func (this *MinStack) Push(x int) {
 	}
 }
 
-func (this *MinStack) Pop() {
+func (this *MinStack) Pop155() {
 	this.Head = this.Head.Next
 }
 
-func (this *MinStack) Top() int {
+func (this *MinStack) Top155() int {
 	return this.Head.Val
 }
 
