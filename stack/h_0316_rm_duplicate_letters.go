@@ -18,7 +18,7 @@ Output: "acdb"
 */
 
 func removeDuplicateLetters316(s string) string {
-	dict, dictStack := make(map[int]int, 26), make(map[int]bool)
+	dict, dictStack := make(map[int]int, 26), make(map[int]bool, 26)
 	stack := make([]int, 0)
 	res := ""
 	for _, v := range s {
@@ -29,11 +29,8 @@ func removeDuplicateLetters316(s string) string {
 		ascii := int(v)
 		dict[ascii]--
 		isLarger := true
-		for len(stack) != 0 && ascii < stack[len(stack)-1] && dict[stack[len(stack)-1]] > 0 {
-			// important: we need to check if the val has already been existed in the stack
-			if dictStack[ascii] {
-				break
-			}
+		// important: we need to check if the val has already been existed in the stack
+		for len(stack) != 0 && ascii < stack[len(stack)-1] && dict[stack[len(stack)-1]] > 0 && !dictStack[ascii] {
 			pop := stack[len(stack)-1]
 			stack = stack[:len(stack)-1]
 			dictStack[pop] = false
