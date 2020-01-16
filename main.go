@@ -1,51 +1,43 @@
 package main
 
-import "leetcode/linkedlists"
+import (
+	"leetcode/linkedlists"
+)
 
 func main() {
-	swapPairs(&linkedlists.ListNode{
+	reorderList(&linkedlists.ListNode{
 		Val: 1,
 		Next: &linkedlists.ListNode{
-			Val: 2,
-			Next: &linkedlists.ListNode{
-				Val: 3,
-				Next: &linkedlists.ListNode{
-					Val:  4,
-					Next: &linkedlists.ListNode{Val: 5},
-				},
-			},
+			Val: 1,
 		},
 	})
 }
 
-func swapPairs(head *linkedlists.ListNode) *linkedlists.ListNode {
+func reorderList(head *linkedlists.ListNode) *linkedlists.ListNode {
 	if head == nil || head.Next == nil {
 		return head
 	}
-	var (
-		res, last *linkedlists.ListNode
-		nextStart = head
-	)
-
-	for nextStart != nil {
-		if nextStart.Next == nil || nextStart.Next.Next == nil {
-			nextStart = nil
+	even, odd := head, head.Next
+	evenHead, oddHead := even, odd
+	var lastEven *linkedlists.ListNode
+	index := 0
+	for even != nil && odd != nil {
+		if index%2 == 0 {
+			even.Next, even = odd.Next, odd.Next
+			if even != nil {
+				lastEven = even
+			}
 		} else {
-			nextStart = nextStart.Next.Next
-			head.Next.Next = nil
+			odd.Next, odd = even.Next, odd.Next
 		}
-		var prev *linkedlists.ListNode
-		for head != nil {
-			prev, head.Next, head = head, prev, head.Next
-		}
-		if res == nil {
-			res, last = prev, prev.Next
-		} else {
-			last, last.Next = prev.Next, prev
-		}
-		head = nextStart
+		index++
 	}
-	return res
+	if lastEven == nil {
+		evenHead.Next = oddHead
+	} else {
+		lastEven.Next = oddHead
+	}
+	return evenHead
 }
 
 // Fibonacci
