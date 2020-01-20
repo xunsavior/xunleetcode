@@ -5,39 +5,59 @@ import (
 )
 
 func main() {
-	reorderList(&linkedlists.ListNode{
+	getIntersectionNode(&linkedlists.ListNode{
 		Val: 1,
 		Next: &linkedlists.ListNode{
-			Val: 1,
+			Val: 2,
+			Next: &linkedlists.ListNode{
+				Val: 3,
+				Next: &linkedlists.ListNode{
+					Val: 4,
+					Next: &linkedlists.ListNode{
+						Val: 5,
+					},
+				},
+			},
 		},
-	})
+	}, 2, 4)
 }
 
-func reorderList(head *linkedlists.ListNode) *linkedlists.ListNode {
-	if head == nil || head.Next == nil {
-		return head
+func getIntersectionNode(head *linkedlists.ListNode, m int, n int) *linkedlists.ListNode {
+	start, i := 1, 0
+	if m > 1 {
+		start = m - 1
 	}
-	even, odd := head, head.Next
-	evenHead, oddHead := even, odd
-	var lastEven *linkedlists.ListNode
-	index := 0
-	for even != nil && odd != nil {
-		if index%2 == 0 {
-			even.Next, even = odd.Next, odd.Next
-			if even != nil {
-				lastEven = even
-			}
-		} else {
-			odd.Next, odd = even.Next, odd.Next
+	var (
+		startNode, endNode, reversedStart, prev *linkedlists.ListNode
+	)
+	tmp := head
+	for tmp != nil {
+		i++
+		if i == start {
+			startNode = tmp
 		}
-		index++
+		if i == m {
+			reversedStart = tmp
+		}
+		if i == n {
+			endNode = tmp.Next
+			tmp.Next = nil
+		}
+		tmp = tmp.Next
 	}
-	if lastEven == nil {
-		evenHead.Next = oddHead
+
+	end := reversedStart
+	for reversedStart != nil {
+		prev, reversedStart.Next, reversedStart = reversedStart, prev, reversedStart.Next
+	}
+
+	if m == start {
+		head, end.Next = prev, endNode
 	} else {
-		lastEven.Next = oddHead
+		startNode.Next, end.Next = prev, endNode
 	}
-	return evenHead
+
+	return head
 }
 
 // Fibonacci
