@@ -1,63 +1,60 @@
 package main
 
 import (
-	"leetcode/linkedlists"
+	"github.com/xunsavior/go-basic-utils/linkedlist"
 )
 
 func main() {
-	getIntersectionNode(&linkedlists.ListNode{
+	reverseKGroup25(&linkedlist.ListNode{
 		Val: 1,
-		Next: &linkedlists.ListNode{
+		Next: &linkedlist.ListNode{
 			Val: 2,
-			Next: &linkedlists.ListNode{
+			Next: &linkedlist.ListNode{
 				Val: 3,
-				Next: &linkedlists.ListNode{
-					Val: 4,
-					Next: &linkedlists.ListNode{
-						Val: 5,
-					},
+				Next: &linkedlist.ListNode{
+					Val:  4,
+					Next: &linkedlist.ListNode{Val: 5},
 				},
 			},
 		},
-	}, 2, 4)
+	}, 2)
 }
 
-func getIntersectionNode(head *linkedlists.ListNode, m int, n int) *linkedlists.ListNode {
-	start, i := 1, 0
-	if m > 1 {
-		start = m - 1
-	}
+func reverseKGroup25(head *linkedlist.ListNode, k int) *linkedlist.ListNode {
+	i := 0
+	reverseHead, res := head, head
 	var (
-		startNode, endNode, reversedStart, prev *linkedlists.ListNode
+		reverseTail, lastTail *linkedlist.ListNode
 	)
-	tmp := head
-	for tmp != nil {
+	isFirstTime := true
+	for head != nil {
 		i++
-		if i == start {
-			startNode = tmp
+		if i == k {
+			// perform reverse here
+			reverseTail, head = head, head.Next
+			reverseTail.Next = nil
+			var prev *linkedlist.ListNode
+			start := reverseHead
+			for reverseHead != nil {
+				prev, reverseHead.Next, reverseHead = reverseHead, prev, reverseHead.Next
+			}
+			if isFirstTime {
+				res, isFirstTime = prev, false
+			}
+			/*
+				important: we must ensure that the tail node of last reversed list ought
+				to point to
+			*/
+			if lastTail != nil {
+				lastTail.Next = prev
+			}
+			lastTail, start.Next, reverseHead = start, head, head
+			i = 0
+		} else {
+			head = head.Next
 		}
-		if i == m {
-			reversedStart = tmp
-		}
-		if i == n {
-			endNode = tmp.Next
-			tmp.Next = nil
-		}
-		tmp = tmp.Next
 	}
-
-	end := reversedStart
-	for reversedStart != nil {
-		prev, reversedStart.Next, reversedStart = reversedStart, prev, reversedStart.Next
-	}
-
-	if m == start {
-		head, end.Next = prev, endNode
-	} else {
-		startNode.Next, end.Next = prev, endNode
-	}
-
-	return head
+	return res
 }
 
 // Fibonacci

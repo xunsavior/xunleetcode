@@ -1,8 +1,6 @@
 package tree
 
-import (
-	"leetcode/utils"
-)
+import "github.com/xunsavior/xunleetcode/utils"
 
 /*
 Company: Facebook

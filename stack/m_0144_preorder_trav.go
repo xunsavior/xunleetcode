@@ -1,6 +1,8 @@
 package stack
 
-import "leetcode/tree"
+import (
+	"github.com/xunsavior/xunleetcode/tree"
+)
 
 /*
 Company: Amazon(2); Cisco(2), Google(2);

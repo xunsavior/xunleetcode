@@ -1,6 +1,8 @@
 package stack
 
-import "leetcode/tree"
+import (
+	"github.com/xunsavior/xunleetcode/tree"
+)
 
 /*
 Company: Google, Amazon, Facebook, Uber
