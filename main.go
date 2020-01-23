@@ -1,60 +1,25 @@
 package main
 
 import (
-	"github.com/xunsavior/go-basic-utils/linkedlist"
+	"sort"
+	"strconv"
+	"strings"
 )
 
 func main() {
-	reverseKGroup25(&linkedlist.ListNode{
-		Val: 1,
-		Next: &linkedlist.ListNode{
-			Val: 2,
-			Next: &linkedlist.ListNode{
-				Val: 3,
-				Next: &linkedlist.ListNode{
-					Val:  4,
-					Next: &linkedlist.ListNode{Val: 5},
-				},
-			},
-		},
-	}, 2)
+	largestNumber179([]int{3, 30, 34, 5, 9})
 }
-
-func reverseKGroup25(head *linkedlist.ListNode, k int) *linkedlist.ListNode {
-	i := 0
-	reverseHead, res := head, head
-	var (
-		reverseTail, lastTail *linkedlist.ListNode
-	)
-	isFirstTime := true
-	for head != nil {
-		i++
-		if i == k {
-			// perform reverse here
-			reverseTail, head = head, head.Next
-			reverseTail.Next = nil
-			var prev *linkedlist.ListNode
-			start := reverseHead
-			for reverseHead != nil {
-				prev, reverseHead.Next, reverseHead = reverseHead, prev, reverseHead.Next
-			}
-			if isFirstTime {
-				res, isFirstTime = prev, false
-			}
-			/*
-				important: we must ensure that the tail node of last reversed list ought
-				to point to
-			*/
-			if lastTail != nil {
-				lastTail.Next = prev
-			}
-			lastTail, start.Next, reverseHead = start, head, head
-			i = 0
-		} else {
-			head = head.Next
-		}
+func largestNumber179(nums []int) string {
+	strnums := make([]string, 0)
+	for _, v := range nums {
+		strnums = append(strnums, strconv.Itoa(v))
 	}
-	return res
+	sort.Slice(strnums, func(i, j int) bool {
+		return (strnums[i] + strnums[j]) > (strnums[j] + strnums[i])
+	})
+	numStr := strings.Join(strnums, "")
+	numStr = strings.TrimLeft(numStr, "0")
+	return numStr
 }
 
 // Fibonacci
