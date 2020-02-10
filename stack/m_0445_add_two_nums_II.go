@@ -1,8 +1,6 @@
 package stack
 
-import (
-	"github.com/xunsavior/go-basic-utils/linkedlist"
-)
+import "github.com/xunsavior/go-basic-utils/data_structure/linkedlist"
 
 /*
 Company: Microsoft(9), Amazon(7), Bloomberg(4), Oracle(2); Facebook(2)

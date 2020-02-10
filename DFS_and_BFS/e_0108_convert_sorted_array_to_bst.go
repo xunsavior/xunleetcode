@@ -1,4 +1,4 @@
-package tree
+package dfsandbfs
 
 /*
 Company: Airbnb
@@ -19,13 +19,13 @@ One possible answer is: [0,-3,9,-10,null,5], which represents the following heig
    /   /
  -10  5
 */
-func sortedArrayToBST108(nums []int) *TNode {
+func sortedArrayToBST108(nums []int) *TreeNode {
 	size := len(nums)
 	if size == 0 {
 		return nil
 	}
 	mid := size / 2
-	return &TNode{
+	return &TreeNode{
 		Val:   nums[mid],
 		Left:  sortedArrayToBST108(nums[:mid]),
 		Right: sortedArrayToBST108(nums[mid+1:]),

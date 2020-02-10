@@ -3,7 +3,7 @@ package tree
 import "math"
 
 /*
-Company: Bloomberg
+Company: Amazon(5), Microsoft(3); Facebook(3), Google(3); Cisco(2)
 
 Also see: 104
 

@@ -1,9 +1,9 @@
-package tree
+package dfsandbfs
 
 import "math"
 
 /*
-Company: Uber, LinkedIn, Apple, Yahoo
+Company: Microsoft(5), Amazon(4), Google(4), Facebook(3), Bloomberg(2)
 
 Also see: 111
 
@@ -25,7 +25,7 @@ return its depth = 3.
 */
 
 // MaxDepth104 ... bottom-up solution
-func MaxDepth104(root *TNode) int {
+func MaxDepth104(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
