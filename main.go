@@ -1,25 +1,7 @@
 package main
 
-import (
-	"sort"
-	"strconv"
-	"strings"
-)
-
 func main() {
-	largestNumber179([]int{3, 30, 34, 5, 9})
-}
-func largestNumber179(nums []int) string {
-	strnums := make([]string, 0)
-	for _, v := range nums {
-		strnums = append(strnums, strconv.Itoa(v))
-	}
-	sort.Slice(strnums, func(i, j int) bool {
-		return (strnums[i] + strnums[j]) > (strnums[j] + strnums[i])
-	})
-	numStr := strings.Join(strnums, "")
-	numStr = strings.TrimLeft(numStr, "0")
-	return numStr
+
 }
 
 // Fibonacci

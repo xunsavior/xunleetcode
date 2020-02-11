@@ -25,18 +25,18 @@ func decodeString394(s string) string {
 	res := ""
 	index := 0
 	for index < len(s) {
-		if int(s[index]) > 47 && int(s[index]) < 58 { // numeric
+		if int(s[index]) > 47 && int(s[index]) < 58 { // numeric, don't forget to take the numbers with multiple digits into consideration
 			count := 0
 			for index < len(s) && int(s[index]) > 47 && int(s[index]) < 58 {
 				count = 10*count + int(s[index]) - 48
 				index++
 			}
 			counts = append(counts, count)
-		} else if int(s[index]) == 91 { // "["
+		} else if int(s[index]) == 91 { // "[" means we need to add current res to the stack, and clear res
 			results = append(results, res)
 			res = ""
 			index++
-		} else if int(s[index]) == 93 { // "]"
+		} else if int(s[index]) == 93 { // "]" pop both stack
 			popCount, resultPop := counts[len(counts)-1], results[len(results)-1]
 			counts, results = counts[:len(counts)-1], results[:len(results)-1]
 			for i := 0; i < popCount; i++ {
@@ -44,7 +44,7 @@ func decodeString394(s string) string {
 			}
 			res = resultPop
 			index++
-		} else {
+		} else { // append to res
 			res += string(int(s[index]))
 			index++
 		}
