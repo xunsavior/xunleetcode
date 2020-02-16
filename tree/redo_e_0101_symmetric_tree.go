@@ -1,7 +1,7 @@
 package tree
 
 /*
-Company: Microsoft, Bloomberg, LinkedIn
+Company: Amazon(9), LinkedIn(6), Microsoft(3), Uber(2), Yandex(2), Atlassian(2)
 
 Also see: 100
 
