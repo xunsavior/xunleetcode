@@ -1,7 +1,7 @@
 package tree
 
 /*
-Company: Microsoft
+Company: Amazon(5), Facebook(3); Microsoft(2), Adobe(2); Zillow(4)
 
 Given a binary tree and a sum, determine if the tree has a root-to-leaf path
 such that adding up all the values along the path equals the given sum.
@@ -10,7 +10,6 @@ Note: A leaf is a node with no children.
 
 Example:
 Given the below binary tree and sum = 22,
-
       5
      / \
     4   8
@@ -26,25 +25,12 @@ func hasPathSum112(root *TNode, sum int) bool {
 	if root == nil {
 		return false
 	}
-	return helper112(root, sum, 0)
-}
 
-//Top-down solution
-func helper112(currentNode *TNode, sum int, parentSum int) bool {
-	l, r := currentNode.Left, currentNode.Right
-	// current node is leaf
-	if l == nil && r == nil {
-		return sum == parentSum+currentNode.Val
+	l, r := root.Left, root.Right
+
+	if root.Val == sum && l == nil && r == nil {
+		return true
 	}
-	// current node ONLY has left child
-	if r == nil {
-		return helper112(l, sum, parentSum+currentNode.Val)
-	}
-	// current node ONLY has right child
-	if l == nil {
-		return helper112(r, sum, parentSum+currentNode.Val)
-	}
-	// current node has both left and right child
-	return helper112(l, sum, parentSum+currentNode.Val) ||
-		helper112(r, sum, parentSum+currentNode.Val)
+
+	return hasPathSum112(l, sum-root.Val) || hasPathSum112(r, sum-root.Val)
 }

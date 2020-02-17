@@ -1,7 +1,10 @@
 package main
 
 func main() {
+	nums := []int{1, 2, 3}
+	if num, ok := nums; ok {
 
+	}
 }
 
 // Fibonacci

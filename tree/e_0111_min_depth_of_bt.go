@@ -3,7 +3,7 @@ package tree
 import "math"
 
 /*
-Company: Unknown
+Company: Facebook(9); Amazon(2); Microsoft(2)
 
 Also see: 104
 
@@ -24,9 +24,7 @@ Given binary tree [3,9,20,null,null,15,7],
 return its minimum depth = 2.
 */
 
-/*
-	Important: If one child is nil, then we will return the min depth of the other child
-*/
+//Important: If one child is nil, then we will return the min depth of the other child
 func minDepth111(root *TNode) int {
 	if root == nil {
 		return 0
