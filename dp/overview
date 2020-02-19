@@ -1,0 +1,5 @@
+4 step
+1. Can it be divided into subproblems?
+2. recursive solution
+3. are there repetitive subproblems?
+4. memoize subproblems

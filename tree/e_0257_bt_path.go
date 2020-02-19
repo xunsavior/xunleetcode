@@ -3,7 +3,7 @@ package tree
 import "strconv"
 
 /*
-Company: Google, Facebook, Apple
+Company: Facebook(7), Amazon(4); Microsoft(2); Yandex(2), Google(2)
 
 Given a binary tree, return all root-to-leaf paths.
 

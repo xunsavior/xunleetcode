@@ -1,7 +1,7 @@
 package tree
 
 /*
-Company: Facebook, Microsoft, Amazon, Twitter
+Company: LinkedIn(6), Microsoft(3), Amazon(3), Oracle(2); Facebook(4)
 
 Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST.
 
@@ -28,14 +28,13 @@ p and q are different and both values will exist in the BST.
 
 // top-down solution
 func lowestCommonAncestor235(root, p, q *TNode) *TNode {
-	// p and q are NOT in the same subtree of current node
-	if (p.Val > root.Val && q.Val < root.Val) ||
-		(p.Val < root.Val && q.Val > root.Val) {
-		return root
+	if root == nil {
+		return nil
 	}
 
-	// q is the subree of p or p is the subtree of q
-	if p.Val == root.Val || q.Val == root.Val {
+	rootVal, pVal, qVal := root.Val, p.Val, q.Val
+
+	if (pVal >= rootVal && qVal <= rootVal) || (pVal <= rootVal && qVal >= rootVal) {
 		return root
 	}
 

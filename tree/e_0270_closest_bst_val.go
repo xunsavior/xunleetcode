@@ -3,7 +3,7 @@ package tree
 import "math"
 
 /*
-Company: Facebook, Amazon, Bloomberg, Microsoft, Google, LinkedIn, Snapchat
+Company: Facebook(8), Amazon(5); Microsoft(2); Bloomberg(3), LinkedIn(2), Google(2)
 Given a non-empty binary search tree and a target value, find the value in the BST that is closest to the target.
 
 Note:
@@ -21,30 +21,40 @@ Output: 4
 */
 
 func closestValue270(root *TNode, target float64) int {
-	lastVal := math.MinInt32
-	helper270(root, target, &lastVal)
-	return lastVal
-}
+	currentVal := float64(root.Val)
+	l, r := root.Left, root.Right
 
-// inorder traversal
-func helper270(current *TNode, target float64, lastVal *int) {
-	if current.Left != nil {
-		return
+	if currentVal == target {
+		return int(currentVal)
 	}
 
-	if target < float64(current.Val) {
-		if *lastVal == math.MinInt32 {
-			*lastVal = current.Val
+	if target > currentVal {
+		if r == nil {
+			return int(currentVal)
 		}
-		if math.Abs(float64(*lastVal)-target) > math.Abs(float64(current.Val)-target) {
-			*lastVal = current.Val
+		rVal := float64(r.Val)
+		if target >= rVal {
+			return closestValue270(r, target)
 		}
-		return
+		childRes := closestValue270(r, target)
+		gap1, gap2 := target-currentVal, math.Abs(float64(childRes)-target)
+		if gap1 < gap2 {
+			return int(currentVal)
+		}
+		return childRes
 	}
 
-	*lastVal = current.Val
-
-	if current.Right != nil {
-		helper270(current.Right, target, lastVal)
+	if l == nil {
+		return int(currentVal)
 	}
+	lVal := float64(l.Val)
+	if target <= lVal {
+		return closestValue270(l, target)
+	}
+	childRes := closestValue270(l, target)
+	gap1, gap2 := math.Abs(currentVal-target), math.Abs(float64(childRes)-target)
+	if gap1 < gap2 {
+		return int(currentVal)
+	}
+	return childRes
 }

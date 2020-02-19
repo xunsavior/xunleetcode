@@ -1,7 +1,7 @@
 package tree
 
 /*
-Company: Unknown
+Company: Google(3), VMware(3), Amazon(2); Bloomberg(2); Microsoft(2)
 
 Invert a binary tree.
 
@@ -22,9 +22,15 @@ Output:
 */
 
 func invertTree226(root *TNode) *TNode {
-	if root == nil || (root.Left == nil && root.Right == nil) {
-		return root
+	if root == nil {
+		return nil
 	}
-	root.Left, root.Right = invertTree226(root.Right), invertTree226(root.Left)
-	return root
+
+	root.Left, root.Right = root.Right, root.Left
+
+	return &TNode{
+		Val:   root.Val,
+		Left:  invertTree226(root.Left),
+		Right: invertTree226(root.Right),
+	}
 }
