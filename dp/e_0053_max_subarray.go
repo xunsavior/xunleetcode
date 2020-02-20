@@ -34,6 +34,21 @@ func maxSubArray53DPSolution(nums []int) int {
 	return maxSum
 }
 
+func maxSubArray53DWithoutChangingOriginalArray(nums []int) int {
+	maxSum, sum := math.MinInt32, 0
+
+	for _, v := range nums {
+		sum += v
+		maxSum = int(math.Max(float64(maxSum), float64(sum)))
+		// very important
+		if sum < 0 {
+			sum = 0
+		}
+	}
+
+	return maxSum
+}
+
 // split nums into left, cross and right, then return sum of each group
 func maxSubArray53DCSolution(nums []int) int {
 	if len(nums) == 1 {
@@ -56,6 +71,7 @@ func helper53(nums []int, mid int) int {
 
 	leftSubSum, rightSubSum, currSum := math.MinInt32, math.MinInt32, 0
 
+	// important: from mid -> 0, as the subarray is consecutive
 	for i := 0; i <= mid; i++ {
 		currSum += nums[i]
 		leftSubSum = int(math.Max(float64(leftSubSum), float64(currSum)))
