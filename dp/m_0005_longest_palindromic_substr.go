@@ -32,6 +32,7 @@ func longestPalindrome5(s string) string {
 	l, r := 0, 0
 
 	for i := range s {
+		// two cases: "aba" and "aabb"
 		len1, len2 := helper5(s, i, i), helper5(s, i, i+1)
 		maxLen := int(math.Max(float64(len1), float64(len2)))
 		if maxLen > r-l {

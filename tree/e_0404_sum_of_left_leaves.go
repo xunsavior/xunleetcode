@@ -1,7 +1,7 @@
 package tree
 
 /*
-Company: Google(2), Amazon(2), Expedia(2)
+Company: ; Amazon(2), Expedia(2); Google(3), Adobe(2), Mathworks(2)
 
 Find the sum of all left leaves in a given binary tree.
 
@@ -14,7 +14,7 @@ Example:
 There are two left leaves in the binary tree, with values 9 and 15 respectively. Return 24.
 */
 
-// top-down solution
+// bottom up
 func sumOfLeftLeaves404(root *TNode) int {
 	if root == nil || (root.Left == nil && root.Right == nil) {
 		return 0
