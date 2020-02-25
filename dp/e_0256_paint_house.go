@@ -36,7 +36,7 @@ func minCost256(costs [][]int) int {
 	if n == 0 {
 		return 0
 	}
-	cache := make([][3]int, n)
+	cache := make([][3]int, n-1)
 	redCost, greenCost, blueCost := costs[0][red], costs[0][green], costs[0][blue]
 	res1, res2, res3 := redCost+helper256(red, 1, costs, cache), greenCost+helper256(green, 1, costs, cache), blueCost+helper256(blue, 1, costs, cache)
 	return int(math.Min(float64(res1), math.Min(float64(res2), float64(res3))))
@@ -49,22 +49,22 @@ func helper256(lastColor, index int, costs [][]int, cache [][3]int) int {
 		return 0
 	}
 
-	res1, res2, res3 := cache[index][red], cache[index][green], cache[index][blue]
+	res1, res2, res3 := cache[index-1][red], cache[index-1][green], cache[index-1][blue]
 	redCost, greenCost, blueCost := costs[index][red], costs[index][green], costs[index][blue]
 
 	if res1 == 0 {
 		res1 = redCost + helper256(red, index+1, costs, cache)
-		cache[index][red] = res1
+		cache[index-1][red] = res1
 	}
 
 	if res2 == 0 {
 		res2 = greenCost + helper256(green, index+1, costs, cache)
-		cache[index][green] = res2
+		cache[index-1][green] = res2
 	}
 
 	if res3 == 0 {
 		res3 = blueCost + helper256(blue, index+1, costs, cache)
-		cache[index][blue] = res3
+		cache[index-1][blue] = res3
 	}
 
 	if lastColor == red {
