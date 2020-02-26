@@ -1,10 +1,11 @@
 package main
 
-func main() {
-	nums := []int{1, 2, 3}
-	if num, ok := nums; ok {
+import "fmt"
 
-	}
+func main() {
+	cache := make([][3]int, 3)
+	cache[0][1] = 2
+	fmt.Printf("%v", cache)
 }
 
 // Fibonacci
