@@ -1,5 +1,7 @@
 package dp
 
+import "math"
+
 /*
 Given an integer array nums, find the contiguous subarray within an array
 (containing at least one number) which has the largest product.
@@ -19,23 +21,9 @@ func maxProduct152(nums []int) int {
 	res, max, min := nums[0], nums[0], nums[0]
 
 	for i := 1; i < len(nums); i++ {
-		val := nums[i]
-		if val < 0 {
-			max, min = min, max
-		}
-
-		if val > max*val {
-			max = val
-		} else {
-			max *= val
-		}
-
-		if val < min*val {
-			min = val
-		} else {
-			min *= val
-		}
-
+		tempMax, tempMin, val := max, min, nums[i]
+		max = int(math.Max(float64(val), math.Max(float64(tempMax*val), float64(tempMin*val))))
+		min = int(math.Min(float64(val), math.Min(float64(tempMax*val), float64(tempMin*val))))
 		if max > res {
 			res = max
 		}
