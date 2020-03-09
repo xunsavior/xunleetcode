@@ -1,7 +1,7 @@
 package tree
 
 /*
-Company: Amazon
+Company: Amazon(2)
 Given a BST, convert it to a Greater Tree such that every
 key of the original BST is changed to the original key plus
 sum of all keys greater than the original key in BST.
@@ -34,14 +34,11 @@ func helper538(current *TNode, lastNode *TNode) {
 		return
 	}
 
-	if current.Right != nil {
-		helper538(current.Right, lastNode)
-	}
+	helper538(current.Right, lastNode)
 
 	current.Val += lastNode.Val
 	lastNode.Val = current.Val
 
-	if current.Left != nil {
-		helper538(current.Left, lastNode)
-	}
+	helper538(current.Left, lastNode)
+
 }

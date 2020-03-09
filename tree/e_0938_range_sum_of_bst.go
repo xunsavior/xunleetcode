@@ -1,7 +1,7 @@
 package tree
 
 /*
-Company: Facebook(10), Amazon(2), Microsoft(2), Apple(2)
+Company: Facebook(14), Apple(3), Oracle(3), Amazon(2); Microsoft(3)
 
 Given the root node of a binary search tree, return the sum
 of values of all nodes with value between L and R (inclusive).
@@ -24,19 +24,16 @@ func rangeSumBST938(root *TNode, L int, R int) int {
 	if root == nil {
 		return 0
 	}
-	l, r := root.Left, root.Right
 
-	if l == nil && r == nil && root.Val >= L && root.Val <= R {
-		return root.Val
+	val := root.Val
+
+	if val > R {
+		return rangeSumBST938(root.Left, L, R)
 	}
 
-	if root.Val > R {
-		return rangeSumBST938(l, L, R)
+	if val < L {
+		return rangeSumBST938(root.Right, L, R)
 	}
 
-	if root.Val < L {
-		return rangeSumBST938(r, L, R)
-	}
-
-	return root.Val + rangeSumBST938(l, L, R) + rangeSumBST938(r, L, R)
+	return val + rangeSumBST938(root.Left, L, R) + rangeSumBST938(root.Right, L, R)
 }

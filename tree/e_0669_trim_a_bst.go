@@ -1,7 +1,7 @@
 package tree
 
 /*
-Company: Adobe(3)
+Company: Microsoft(3); Adobe(3); Amazon(2), Bloomberg(1)
 
 Given a binary search tree and the lowest and highest boundaries as L and R,
 trim the tree so that all its elements lies in [L, R] (R >= L). You might need

@@ -3,7 +3,7 @@ package tree
 import "math"
 
 /*
-Company: Google
+Company: Apple(2); Amazon(3); Google(6)
 
 Also see: 124 and 543
 
@@ -46,7 +46,7 @@ func longestUnivaluePath687(root *TNode) int {
 func helper687(current *TNode, maxPathSum *int) int {
 	l, r := current.Left, current.Right
 	if l == nil && r == nil {
-		return 0
+		return 0 // we return 0, because we only count edge instead of node
 	}
 
 	lv, rv := 0, 0
@@ -59,6 +59,7 @@ func helper687(current *TNode, maxPathSum *int) int {
 			lv = 0
 		}
 	}
+
 	if r != nil {
 		if r.Val == current.Val {
 			rv = helper687(r, maxPathSum) + 1

@@ -1,7 +1,7 @@
 package tree
 
 /*
-Company: Quora, Amazon, Zillow, Bloomberg
+Company: Amazon(9), Quora(7), Zillow(3), Facebook(2), Bloomberg(2)
 
 You are given a binary tree in which each node contains an integer value.
 Find the number of paths that sum to a given value.
@@ -25,26 +25,22 @@ Return 3. The paths that sum to 8 are:
 */
 
 func pathSum437(root *TNode, sum int) int {
-	count := 0
 	if root == nil {
-		return count
+		return 0
 	}
-	helper437(root, sum, &count)
-	lsum := pathSum437(root.Left, sum)
-	rsum := pathSum437(root.Right, sum)
-	return count + lsum + rsum
+	return helper437(root, sum) + pathSum437(root.Left, sum) + pathSum437(root.Right, sum)
 }
 
-func helper437(current *TNode, sum int, count *int) {
-	if current == nil {
-		return
+func helper437(root *TNode, sum int) int {
+	if root == nil {
+		return 0
 	}
 
-	if current.Val == sum {
-		*count++
+	val, extra := root.Val, 0
+
+	if val == sum {
+		extra = 1
 	}
 
-	l, r := current.Left, current.Right
-	helper437(l, sum-current.Val, count)
-	helper437(r, sum-current.Val, count)
+	return extra + helper437(root.Left, sum-val) + helper437(root.Right, sum-val)
 }
