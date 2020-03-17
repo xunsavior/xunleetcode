@@ -50,6 +50,7 @@ func countSubstrings647(s string) int {
 	return res
 }
 
+// Time: O(n^2), Space: O(1)
 func countSubstrings647ExpansionSolution(s string) int {
 	if len(s) == 0 {
 		return 0
