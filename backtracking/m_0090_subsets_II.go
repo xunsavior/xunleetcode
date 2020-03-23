@@ -27,23 +27,23 @@ Output:
 func subsetsWithDup90(nums []int) [][]int {
 	sort.Ints(nums)
 	res := [][]int{}
-	helper90(0, nums, []int{}, &res)
+	helper90(0, []int{}, nums, &res)
 	return res
 }
 
-func helper90(index int, nums, addedNums []int, res *[][]int) {
+func helper90(index int, addedNums, nums []int, res *[][]int) {
 	if len(nums) == index {
 		*res = append(*res, addedNums)
 		return
 	}
 
 	newNums := append(addedNums, nums[index])
-	helper90(index+1, nums, newNums[:len(newNums):len(newNums)], res)
+	helper90(index+1, newNums[:len(newNums):len(newNums)], nums, res)
 
 	// important
 	if len(addedNums) > 0 && addedNums[len(addedNums)-1] == nums[index] {
 		return
 	}
 
-	helper90(index+1, nums, addedNums, res)
+	helper90(index+1, addedNums, nums, res)
 }
