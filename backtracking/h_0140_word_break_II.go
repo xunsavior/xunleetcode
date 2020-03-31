@@ -43,10 +43,7 @@ Output:
 */
 
 func wordBreak140(s string, wordDict []string) []string {
-	dict, cache := make(map[string]bool), make(map[string][]string)
-	for _, v := range wordDict {
-		dict[v] = true
-	}
+	cache := make(map[string][]string)
 	return helper140(s, cache, wordDict)
 }
 
