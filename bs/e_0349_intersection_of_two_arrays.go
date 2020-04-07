@@ -1,4 +1,4 @@
-package sorting
+package bs
 
 import "sort"
 
