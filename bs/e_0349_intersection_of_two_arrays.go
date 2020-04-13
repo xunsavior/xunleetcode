@@ -25,33 +25,42 @@ func intersection349(nums1 []int, nums2 []int) []int {
 		return nil
 	}
 
-	sort.Ints(nums2)
-	dic := map[int]bool{}
-	res := []int{}
-	for _, v := range nums1 {
-		if helper349(nums2, v, 0, len(nums2)-1) != -1 {
-			if dic[v] == false {
+	var unsortedArray, sortedArray []int
+	if n1 < n2 {
+		unsortedArray = nums2
+		sort.Ints(nums1)
+		sortedArray = nums1
+	} else {
+		unsortedArray = nums1
+		sort.Ints(nums2)
+		sortedArray = nums2
+	}
+
+	dict, res := map[int]bool{}, []int{}
+	for _, v := range unsortedArray {
+		if dict[v] == false {
+			if helper349(sortedArray, v) {
+				dict[v] = true
 				res = append(res, v)
-				dic[v] = true
 			}
 		}
 	}
+
 	return res
 }
 
 // Binary search
-func helper349(nums []int, target, low, high int) int {
-	index := -1
-	for low <= high {
-		mid := (low + high) / 2
+func helper349(nums []int, target int) bool {
+	start, end := 0, len(nums)-1
+	for start <= end {
+		mid := start + (end-start)/2
 		if nums[mid] < target {
-			high = mid + 1
+			start = mid + 1
 		} else if nums[mid] > target {
-			low = mid - 1
+			end = mid - 1
 		} else {
-			index = mid
-			break
+			return true
 		}
 	}
-	return index
+	return false
 }

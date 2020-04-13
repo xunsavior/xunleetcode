@@ -24,40 +24,26 @@ Output: 0
 */
 
 func searchInsert35(nums []int, target int) int {
-	if len(nums) == 0 {
+	n := len(nums)
+	// smaller than the min number
+	if n == 0 || target < nums[0] {
 		return 0
 	}
-	start, end, mid := 0, len(nums)-1, (len(nums)-1)/2
-
-	if target < nums[start] {
-		return 0
+	// greater than the max number
+	if target > nums[n-1] {
+		return n
 	}
 
-	if target > nums[end] {
-		return len(nums)
-	}
+	start, end := 0, len(nums)-1
 
-	res := 0
-	for start <= end {
-		midVal := nums[mid]
-		if target > midVal {
+	for start < end {
+		mid := start + (end-start)/2
+		if nums[mid] < target {
 			start = mid + 1
-			if midVal < nums[start] {
-				res = mid
-				break
-			}
-		} else if target < midVal {
-			end = mid - 1
-			if midVal > nums[end] {
-				res = mid
-				break
-			}
-		} else {
-			res = mid
-			break
+			continue
 		}
-		mid = (start + end) / 2
+		end = mid
 	}
 
-	return res
+	return start
 }
