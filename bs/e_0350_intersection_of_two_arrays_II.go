@@ -1,6 +1,6 @@
 package bs
 
-import "math"
+import "sort"
 
 /*
 Company: Facebook(9), Amazon(5), LinkedIn(2), Microsoft(2), Yandex(2)
@@ -25,27 +25,53 @@ What if nums1's size is small compared to nums2's size? Which algorithm is bette
 What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements into the memory at once?
 */
 
+// Time: O(M*logN)
+// Space: O(M+N)
 func intersect350(nums1 []int, nums2 []int) []int {
-	if len(nums1) == 0 || len(nums2) == 0 {
+	n1, n2 := len(nums1), len(nums2)
+	if n1 == 0 || n2 == 0 {
 		return nil
 	}
-	res := []int{}
-	dict1, dict2 := make(map[int]int), make(map[int]int)
-	for _, v := range nums1 {
-		dict1[v]++
-	}
-	for _, v := range nums2 {
-		dict2[v]++
+
+	var sortedList, unsortedList []int
+	if n1 < n2 {
+		unsortedList = nums2
+		sort.Ints(nums1)
+		sortedList = nums1
+	} else {
+		unsortedList = nums1
+		sort.Ints(nums2)
+		sortedList = nums2
 	}
 
-	for k := range dict1 {
-		if dict1[k] != 0 && dict2[k] != 0 {
-			times := int(math.Min(float64(dict1[k]), float64(dict2[k])))
-			for i := 0; i < times; i++ {
-				res = append(res, k)
+	dict, res := make(map[int]int), []int{}
+	for _, v := range sortedList {
+		dict[v]++
+	}
+
+	for _, v := range unsortedList {
+		if dict[v] > 0 {
+			if helper350(sortedList, v) {
+				dict[v]--
+				res = append(res, v)
 			}
 		}
 	}
 
 	return res
+}
+
+func helper350(nums []int, target int) bool {
+	start, end := 0, len(nums)-1
+	for start <= end {
+		mid := start + (end-start)/2
+		if nums[mid] < target {
+			start = mid + 1
+		} else if nums[mid] > target {
+			end = mid - 1
+		} else {
+			return true
+		}
+	}
+	return false
 }

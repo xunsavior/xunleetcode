@@ -16,6 +16,8 @@ Input: 14
 Output: false
 */
 
+// Time: O(logN)
+// Space: O(1)
 func isPerfectSquare367(num int) bool {
 	if num < 2 {
 		return true

@@ -30,6 +30,8 @@ Then 4 is the first bad version.
  * func isBadVersion(version int) bool;
  */
 
+// Time: O(logN)
+// Space: O(1)
 func firstBadVersion278(n int) int {
 	start, end := 1, n
 

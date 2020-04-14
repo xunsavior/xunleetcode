@@ -23,6 +23,8 @@ Input: [1,3,5,6], 0
 Output: 0
 */
 
+// Time: O(logN)
+// Space: O(1)
 func searchInsert35(nums []int, target int) int {
 	n := len(nums)
 	// smaller than the min number

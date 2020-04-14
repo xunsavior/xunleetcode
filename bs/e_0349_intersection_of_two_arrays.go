@@ -19,6 +19,8 @@ Each element in the result must be unique.
 The result can be in any order.
 */
 
+// Time: O(M*logN)
+// Space: O(M+N)
 func intersection349(nums1 []int, nums2 []int) []int {
 	n1, n2 := len(nums1), len(nums2)
 	if n1 == 0 || n2 == 0 {

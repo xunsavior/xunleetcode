@@ -21,6 +21,8 @@ Explanation: The square root of 8 is 2.82842..., and since
              the decimal part is truncated, 2 is returned.
 */
 
+// Time: O(logN)
+// Space: O(1)
 func mySqrt69(x int) int {
 	if x < 2 {
 		return x
