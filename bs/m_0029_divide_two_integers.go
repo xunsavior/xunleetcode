@@ -25,10 +25,13 @@ Note:
 Both dividend and divisor will be 32-bit signed integers.
 The divisor will never be 0.
 Assume we are dealing with an environment which could only store integers within the 32-bit signed
-integer range: [−231,  231 − 1]. For the purpose of this problem, assume that your function returns
+integer range: [−2^31,  2^31 − 1]. For the purpose of this problem, assume that your function returns
 2^31 − 1 when the division result overflows.
 */
 
+// redo
+// Time: O(logN); N is the value of dividend
+// Space: O(1)
 func divide29(dividend int, divisor int) int {
 	if dividend == math.MinInt32 && divisor == -1 {
 		return math.MaxInt32

@@ -21,6 +21,8 @@ Input: nums = [4,5,6,7,0,1,2], target = 3
 Output: -1
 */
 
+// time: O(logN)
+// space: O(1)
 func search33(nums []int, target int) int {
 	if len(nums) == 0 {
 		return -1
@@ -28,7 +30,7 @@ func search33(nums []int, target int) int {
 	start, end := 0, len(nums)-1
 	// find the pivot
 	for start < end {
-		mid := (start + end) / 2
+		mid := start + (end-start)/2
 		midVal := nums[mid]
 		if midVal > nums[end] {
 			start = mid + 1
@@ -42,11 +44,11 @@ func search33(nums []int, target int) int {
 	if target >= nums[pivot] && target <= nums[end] {
 		start = pivot
 	} else {
-		end = pivot
+		end = pivot - 1
 	}
 
 	for start <= end {
-		mid := (start + end) / 2
+		mid := start + (end-start)/2
 		midVal := nums[mid]
 		if target < midVal {
 			end = mid - 1
