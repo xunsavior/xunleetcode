@@ -1,0 +1,22 @@
+The greedy problem should be solved in stages
+
+Knapsack problem
+Objects: 1, 2, 3, 4, 5, 6, 7
+Profits: 10, 5, 15, 7, 6, 18, 3
+Weights: 2, 3, 5, 7, 1, 4, 1
+P/W:     5, 1.3, 3, 1, 6, 4.5, 3
+X [0-1]: 1, 2/3, 1, 0, 1, 1, 1
+n = 7, m = 15
+
+Jop sequence with deadlines
+n = 5
+Jobs:       J1, J2, J3, J4, J5
+Profits:    20, 15, 10, 05, 01
+deadlines:  02, 02, 01, 03, 03
+
+# Greedy algorithms
+- Greedy problems usually look like "Find minimum number of something to do something" or 
+"Find maximum number of something to fit in some conditions", and typically propose an 
+unsorted input.
+- The idea of greedy algorithm is to pick the locally optimal move at each step, that will 
+lead to the globally optimal solution.
