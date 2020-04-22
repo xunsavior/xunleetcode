@@ -1,8 +1,9 @@
 package hashtable
 
 import (
-	"leetcode/utils"
 	"sort"
+
+	"github.com/xunsavior/xunleetcode/utils"
 )
 
 /*
