@@ -1,6 +1,6 @@
 package divideandconquer
 
-import "github.com/xunsavior/go-basic-utils/linkedlist"
+import "github.com/xunsavior/go-basic-utils/data_structure/linkedlist"
 
 /*
 Company: Microsoft(3), Adobe(2), Amazon(2); Google(3), Facebook(2)
