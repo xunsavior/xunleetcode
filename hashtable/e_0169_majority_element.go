@@ -1,7 +1,5 @@
 package hashtable
 
-import "math"
-
 /*
 Company: Amazon(6), Google(4), Yahoon(2); Apple(3), Microsoft(2)
 
@@ -25,11 +23,12 @@ Output: 2
 // Space: O(N)
 func majorityElement169(nums []int) int {
 	dict := make(map[int]int)
-	max, res := math.MinInt32, 0
+	max, res := len(nums)/2+len(nums)%2, 0
 	for _, v := range nums {
 		dict[v]++
-		if count := dict[v]; count > max {
-			max, res = count, v
+		if count := dict[v]; count == max {
+			res = v
+			break
 		}
 	}
 
@@ -46,7 +45,7 @@ Intuition of Boyer-Moore Voting Algorithm
 	Space: O(1)
 */
 func majorityElementOptimalSolution(nums []int) int {
-	count, res := 1, 0
+	count, res := 0, 0
 
 	for _, v := range nums {
 		if count == 0 {
