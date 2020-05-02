@@ -31,13 +31,10 @@ func findUnsortedSubarray581(nums []int) int {
 		if nums[i] != sortedNums[i] {
 			if start == -1 {
 				start = i
-			} else {
-				end = i
-			}
-		} else {
+			} 
 			end = i
-		}
-
+		} 
 	}
 
+	return end - start
 }

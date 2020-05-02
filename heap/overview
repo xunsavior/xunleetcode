@@ -1,0 +1,4 @@
+Complexity of Priority Queue
+Polling     O(log(n))
+Peeking     O(1)
+Adding      O(log(n))
