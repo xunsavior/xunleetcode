@@ -1,7 +1,7 @@
-package stack
+package design
 
 /*
-Company: Amazon(17), Bloomberg(9), Microsoft(8), Apple(4)
+Company: Amazon(23), Bloomberg(13), Microsoft(8), Apple(4), Oracle(4)
 
 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
 push(x) -- Push element x onto stack.

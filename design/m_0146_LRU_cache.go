@@ -33,7 +33,7 @@ type LRUCache struct {
 }
 
 // Constructor ...
-func Constructor(capacity int) LRUCache {
+func Constructor146(capacity int) LRUCache {
 	return LRUCache{
 		cache:         make(map[int]*Node),
 		cacheCapacity: capacity,
@@ -83,6 +83,7 @@ func (this *LRUCache) Get(key int) int {
 
 // Put ...
 func (this *LRUCache) Put(key int, value int) {
+	// if the node found in the cache, then we move it to the hea
 	if node, ok := this.cache[key]; ok {
 		node.val = value
 		this.remove(node)
