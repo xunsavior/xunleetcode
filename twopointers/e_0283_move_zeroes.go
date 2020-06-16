@@ -15,6 +15,23 @@ Minimize the total number of operations.
 */
 
 func moveZeroes283(nums []int) {
+	count := 0
+
+	for i, v := range nums {
+		if v == 0 {
+			count++
+			continue
+		}
+		nums[i-count] = nums[i]
+	}
+
+	for i := len(nums) - count; i < len(nums); i++ {
+		nums[i] = 0
+	}
+
+}
+
+func moveZeroes283Solution2(nums []int) {
 	n := len(nums)
 	start := 0
 	for _, v := range nums {

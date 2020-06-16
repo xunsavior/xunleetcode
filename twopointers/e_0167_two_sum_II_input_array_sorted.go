@@ -1,7 +1,7 @@
 package twopointers
 
 /*
-Company: Amazon(4), Google(2), Apple(2); Microsoft(2), Pure Storage(2)
+Company: Amazon(6), Apple(2); Google(2), Microsoft(2); Pure Storage(2)
 
 Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.
 
@@ -20,17 +20,18 @@ Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2
 */
 
 func twoSum167(numbers []int, target int) []int {
-	res := make([]int, 0, 2)
 	i, j := 0, len(numbers)-1
+	res := make([]int, 0, 2)
 	for i < j {
-		if numbers[i]+numbers[j] < target {
-			i++
-		} else if numbers[i]+numbers[j] > target {
+		if sum := numbers[i] + numbers[j]; sum > target {
 			j--
+		} else if sum < target {
+			i++
 		} else {
-			res = append(res, i, j)
+			res = append(res, i+1, j+1)
 			break
 		}
 	}
+
 	return res
 }

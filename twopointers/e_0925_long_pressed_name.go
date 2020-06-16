@@ -35,30 +35,37 @@ The characters of name and typed are lowercase letters.
 */
 
 func isLongPressedName925(name string, typed string) bool {
-	sname, styped := len(name), len(typed)
-	if sname == 0 || styped == 0 {
-		return false
-	}
-	if name[0] != typed[0] {
-		return false
-	}
-	i, j := 1, 1
-	isLastCharFound := false
-	for i < sname && j < styped {
-		cname, ctyped := name[i], typed[j]
-		if ctyped == cname {
-			if i == sname-1 {
-				isLastCharFound = true
-			}
+	i, j := 0, 0
+	for j < len(typed) {
+
+		if i < len(name) && name[i] == typed[j] {
 			i++
 			j++
-		} else {
-			if ctyped == typed[j-1] {
-				j++
-				continue
-			}
+			continue
+		}
+
+		if j == 0 || typed[j] != typed[j-1] {
 			return false
 		}
+
+		j++
 	}
-	return styped > sname && isLastCharFound
+
+	return i == len(name)
 }
+
+/*
+Test cases:
+"alex"
+"aaleex"
+"saeed"
+"ssaaedd"
+"leelee"
+"lleeelee"
+"laiden"
+"laiden"
+"pyplrz"
+"ppyypllr"
+"vtkgn"
+"vttkgnn"
+*/

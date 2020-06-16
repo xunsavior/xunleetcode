@@ -33,17 +33,23 @@ int len = removeElement(nums, val);
 for (int i = 0; i < len; i++) {
     print(nums[i]);
 }
+
+Redo is also needed
 */
 func removeElement27(nums []int, val int) int {
 	count := 0
+
 	if len(nums) == 0 {
 		return count
 	}
-	for i := 0; i < len(nums); i++ {
-		if nums[i] != val {
-			nums[count] = nums[i]
+
+	for i := range nums {
+		if val == nums[i] {
 			count++
+		} else {
+			nums[i-count] = nums[i]
 		}
 	}
-	return count
+
+	return len(nums) - count
 }

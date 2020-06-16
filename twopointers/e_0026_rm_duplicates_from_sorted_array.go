@@ -28,6 +28,8 @@ int len = removeDuplicates(nums);
 for (int i = 0; i < len; i++) {
     print(nums[i]);
 }
+
+Redo is also needed
 */
 
 func removeDuplicates26(nums []int) int {
